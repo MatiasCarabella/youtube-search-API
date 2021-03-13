@@ -18,6 +18,7 @@ class YoutubeController extends Controller
         /* CHEQUEANDO SI SE RECIBIÓ UNA API KEY, PARA AUTORIZAR EL USO DE LA API DE GOOGLE*/
         if(isset($_GET['api_key']))
         {
+            // CASO POSITIVO LO AGREGO AL ARRAY DE PARÁMETROS
             $queryParams = $queryParams + array("key" => $_GET['api_key']);
         }
         else
@@ -32,7 +33,7 @@ class YoutubeController extends Controller
             $_GET['results_per_page'] > 0 &&
             $_GET['results_per_page'] <= 10)
         {
-            // CASO POSITIVO AGREGARLO AL ARRAY DE PARAMETROS
+            // CASO POSITIVO AGREGARLO AL ARRAY DE PARÁMETROS
             $queryParams = $queryParams + array("maxResults" => $_GET['results_per_page']);
         }
         else
