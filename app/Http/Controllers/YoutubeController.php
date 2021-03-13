@@ -12,10 +12,19 @@ class YoutubeController extends Controller
         // ARMANDO EL ARRAY CON LOS PARÁMETROS DE LA QUERY
         $queryParams = [
             'part' => 'snippet',
-            'key' => 'AIzaSyAhMwlCgkGksJCKanlM9nnt5Fl2TugtIdA',
             'type' => 'video',
             'q' => $keyword
         ];
+        /* CHEQUEANDO SI SE RECIBIÓ UNA API KEY, PARA AUTORIZAR EL USO DE LA API DE GOOGLE*/
+        if(isset($_GET['api_key']))
+        {
+            $queryParams = $queryParams + array("key" => $_GET['api_key']);
+        }
+        else
+        {
+            /* A EFECTOS DE ESTE PROYECTO DEMO, SI NO SE PROVEYÓ UNA CLAVE USO LA MÍA PROPIA */
+            $queryParams = $queryParams + array("key" => "AIzaSyAwAlrrnyT9eDQ0mOKslcPcM068EeDxjpY");
+        }
         /* CHEQUEANDO SI SE RECIBIÓ EL PARÁMETRO OPCIONAL results_per_page
             Y VALIDANDO QUE SEA UN NÚMERO ENTRE 0 Y 10, ACORDE AL REQUERIMIENTO DEL PROYECTO */
         if(isset($_GET['results_per_page']) && 
