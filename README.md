@@ -7,15 +7,13 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Youtube Search API
+## Youtube Search API - Aivo Challenge - Documento Técnico
 
-###  Documento Técnico - Aivo Challenge
-
-#### Requerimiento:
+### Requerimiento
 - Desarrollar un endpoint que devuelva hasta 10 resultados de una búsqueda en YouTube, dada una 
 palabra clave.
 
-##### Parámetros obligatorios:
+#### Parámetros obligatorios
 - **_published_at_** **(*)**
 - **_id_**
 - **_title_**
@@ -25,7 +23,7 @@ palabra clave.
 **(*)** - Se observa que se usa la notación ‘snakecase’ _(separando las palabras con guiones bajos)_, en base a 
 esto todos los demás parámetros respetarán esta convención.
 
-##### Parámetros opcionales:
+#### Parámetros opcionales
 - **_extra_** _(datos adicionales que se quieran agregar a criterio libre)_
 
 En cuanto a esto decidí agregar los parámetros **_direct_link_** y **_channel_title_**
@@ -48,7 +46,7 @@ Finalmente, el formato del JSON respuesta será el siguiente:
 **(*)** - El parámetro **_next_page_token_** sólo aparecerá si efectivamente hay más páginas de resultados, 
 asimismo, **_prev_page_token_** se mostrará únicamente si no nos encontramos posicionados en la página 1.
 
-#### Condiciones generales:
+### Condiciones generales
 - _Proyecto desarrollado en **PHP7**:_
     - Se desarrolló utilizando la versión más nueva de PHP7 al día de la fecha: **PHP 7.4.16**
 - _Framework opcional y a elección:_
@@ -65,7 +63,7 @@ asimismo, **_prev_page_token_** se mostrará únicamente si no nos encontramos p
         - **results_per_page** _(modifica la cantidad de resultados por página, hasta 10 como indica el requerimiento, si este parámetro está ausente el default es 10)_
         - **page_token** _(permite navegar entre las distintas páginas de resultados, dando uso a los parámetros next_page_token y prev_page_token, si este parámetro está ausente simplemente se posiciona en la página #1)_
 
-#### Instalación:
+### Instalación
 Para ejecutar correctamente el proyecto se requieren:
 - **PHP 7.4.16**, u otra versión de PHP7 en su defecto.
 - <a href="https://getcomposer.org/">**Composer**</a>, como administrador de dependencias.
@@ -110,7 +108,7 @@ Como validación, si accedemos a esa URL ya deberíamos poder ver la _‘Laravel
 
 <p align="center"><img src="https://i.imgur.com/CcdzVK5.png"></p>
 
-#### Utilización de la API:
+### Utilización de la API
 
 Finalmente, yendo a lo más entretenido, ya estamos en condiciones de utilizar el desarrollo.
 La URL del endpoint se compone de la siguiente manera:
@@ -148,14 +146,14 @@ de un cliente como <a href="https://www.postman.com/">Postman</a>.
 
 El último parámetro opcional es un **api_key**, los cuales se dan de alta desde la <a href="https://console.developers.google.com/apis/credentials">Google Cloud Platform</a>, este proyecto por defecto funciona con la mía personal, pero se puede especificar una a gusto mediante el parámetro.
 
-#### Observaciones:
+### Observaciones
 
 - Si se ingresa un valor inválido en el parámetro **_results_per_page_**, defaultea a **10**.
 - Si se ingresa un valor inválido en el parámetro **_page_token_** o **_api_key_**, se mostrará el mensaje error tal cual devuelve la API de YouTube.
 
 <p align="center"><img src="https://i.imgur.com/rokIz2c.png"></p>
 
-#### Estructura del proyecto:
+### Estructura del proyecto
 
 El grueso del desarrollo se encuentra en los siguientes archivos del proyecto:
 
@@ -169,7 +167,7 @@ A efectos de facilitar la comprensión del código, todo está comentado como co
 
 <p align="center"><img src="https://i.imgur.com/6ApNbjJ.png"></p>
 
-#### Tests:
+### Tests
 
 Como mencioné al principio, se agregaron un par de tests para validar el funcionamiento del servicio. Estos son:
 
@@ -181,7 +179,7 @@ Para ejecutarlos, simplemente se corre el siguiente comando desde la carpeta del
 php artisan test tests\Feature\YoutubeControllerTest.php
 ```
 
-#### Cierre:
+### Cierre
 Me alegra poder decir que el _‘Have fun!!’_ de la consigna del Challenge también fue cumplida, ¡Realmente entretenido el proyecto!
 
 Para quien haya leído hasta aquí, ¡Muchas gracias y saludos!
