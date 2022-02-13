@@ -6,15 +6,14 @@ use Tests\TestCase;
 
 class YoutubeControllerTest extends TestCase
 {
-
-    // VALIDO QUE EL CONTACTO CON LA API EN CUESTIÓN DEVUELVA STATUS 200
+    // Check for Http Status 200 - OK
     public function testHttpStatus200(){
         $exampleKeyword = "test";
         $this->json('get', '/api/youtubeSearch/'.$exampleKeyword)
          ->assertStatus(200);
     }
     
-    // VALIDO QUE EL JSON OBTENIDO TENGA EL FORMATO ESPERADO
+    // Validating that the Response JSON has the correct structure
     public function testReturnsDataInValidFormat(){
         $exampleKeyword = "test";
         $this->json('get', '/api/youtubeSearch/'.$exampleKeyword)
