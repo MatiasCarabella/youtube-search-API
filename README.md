@@ -23,7 +23,7 @@ palabra clave.
 - **_thumbnail_**
 
 **(*)** - Se observa que se usa la notación ‘snakecase’ _(separando las palabras con guiones bajos)_, en base a 
-esto todos los demás parámetros respetarán esta convención
+esto todos los demás parámetros respetarán esta convención.
 
 ##### Parámetros opcionales:
 - **_extra_** _(datos adicionales que se quieran agregar a criterio libre)_
@@ -49,95 +49,141 @@ Finalmente, el formato del JSON respuesta será el siguiente:
 asimismo, **_prev_page_token_** se mostrará únicamente si no nos encontramos posicionados en la página 1.
 
 #### Condiciones generales:
-- Proyecto desarrollado en **PHP7**:
+- _Proyecto desarrollado en **PHP7**:_
     - Se desarrolló utilizando la versión más nueva de PHP7 al día de la fecha: **PHP 7.4.16**
-- Framework opcional y a elección:
+- _Framework opcional y a elección:_
     - El proyecto se desarrolló con **Laravel 8** y **Composer**
-- El proyecto debe estar disponible en GitHub o BitBucket:
+- _El proyecto debe estar disponible en GitHub o BitBucket:_
     - Se eligió **GitHub**, en el siguiente repositorio: <a href="https://github.com/MatiasCarabella/youtubeSearchAPI">_MatiasCarabella/youtubeSearchAPI (github.com)_</a>
-- El proyecto debe ser testeable localmente, con la documentación necesaria de cómo hacerlo:
-Correcto, a la brevedad estaré abordando el sencillo proceso de cómo hacer correr la aplicación
-- Tests - Opcionales pero valorados:
-Los hay, se complementó el proyecto con un par de tests, que también detallaré más adelante.
-- Todo valor agregado es bienvenido:
-La aplicación tiene acepta una serie de argumentos opcionales que complementan la ‘keyword’ 
-central, que también se detallarán eventualmente, a priori adelanto que son:
-• api_key
-(indica la clave de autenticación obligatoria para usar la API de Google/Youtube, si 
-este parámetro está ausente – considerando que es un proyecto demo – se usa mi 
-key personal)
-• results_per_page
-(modifica la cantidad de resultados por página, hasta 10 como indica el 
-requerimiento, si este parámetro está ausente el default es 10)
-• page_token
-(permite navegar entre las distintas páginas de resultados, dando uso a los 
-parámetros next_page_token y prev_page_token, si este parámetro está ausente 
-simplemente se posiciona en la página #1)
-▪ Instalación:
+- _El proyecto debe ser testeable localmente, con la documentación necesaria de cómo hacerlo:_
+    - Correcto, a la brevedad estaré abordando el sencillo proceso de cómo hacer correr la aplicación
+- _Tests - Opcionales pero valorados:_
+    - Los hay, se complementó el proyecto con un par de tests, que también detallaré más adelante.
+- _Todo valor agregado es bienvenido:_
+    - La aplicación tiene acepta una serie de argumentos opcionales que complementan la ‘keyword’ central, que también se detallarán eventualmente, a priori adelanto que son:
+        -  **api_key** _(indica la clave de autenticación obligatoria para usar la API de Google/Youtube, si este parámetro está ausente – considerando que es un proyecto demo – se usa mi key personal)_
+        - **results_per_page** _(modifica la cantidad de resultados por página, hasta 10 como indica el requerimiento, si este parámetro está ausente el default es 10)_
+        - **page_token** _(permite navegar entre las distintas páginas de resultados, dando uso a los parámetros next_page_token y prev_page_token, si este parámetro está ausente simplemente se posiciona en la página #1)_
+
+#### Instalación:
 Para ejecutar correctamente el proyecto se requieren:
-- PHP 7.4.16, u otra versión de PHP7 en su defecto.
-- Composer, como administrador de dependencias
-- Git, opcional pero sugerido para agilizar el proceso
+- **PHP 7.4.16**, u otra versión de PHP7 en su defecto.
+- <a href="https://getcomposer.org/">**Composer**</a>, como administrador de dependencias.
+- <a href="https://git-scm.com/downloads">**Git**</a>, opcional pero sugerido para agilizar el proceso.
+
 Teniendo eso, los pasos a seguir son los siguientes:
-1. Ingresar al repositorio del proyecto en GitHub y copiar la URL del mismo:
-https://github.com/MatiasCarabella/youtubeEndpoint.git
-2. Crear la carpeta en donde se desee descargar el proyecto, acceder a ella desde la consola de 
-preferencia (como puede ser el cmd en Windows) y ejecutar los siguientes comandos:
+
+1. Ingresar al <a href="https://github.com/MatiasCarabella/youtubeSearchAPI">repositorio del proyecto en GitHub</a> y copiar la URL del mismo:
+
+_**<p align="center">https://github.com/MatiasCarabella/youtubeSearchAPI.git</p>**_
+
+2. Crear la carpeta en donde se desee descargar el proyecto, acceder a ella desde la terminal/consola de 
+preferencia y ejecutar los siguientes comandos:
+
+```
 git init
 git pull https://github.com/MatiasCarabella/youtubeEndpoint.git
+```
+
 3. Ya tenemos el proyecto descargado, ahora -aún desde la consola- ejecutamos el siguiente comando 
 para descargar las dependencias correspondientes:
+
+```
 composer install
+```
+
 4. Por último, se prepara el archivo .env y se genera la clave de encriptación necesaria con los 
 siguientes comandos:
-copy .env.example .env (Windows) ó cp .env.example .env (Linux)
+
+`copy .env.example .env` _(Windows)_ ó `cp .env.example .env` _(Linux)_
+```
 php artisan key:generate
+```
+
 Listo todo, de ahora en adelante la forma de ejecutar el proyecto desde su carpeta es con el comando
+```
 php artisan serve
-Como validación, si accedemos a esa URL ya deberíamos poder ver la ‘Laravel homepage’:
-▪ Utilizando el endpoint: 
+```
+<p align="center"><img src="https://i.imgur.com/b4TImjs.png"></p>
+
+Como validación, si accedemos a esa URL ya deberíamos poder ver la _‘Laravel homepage’_:
+
+<p align="center"><img src="https://i.imgur.com/CcdzVK5.png"></p>
+
+#### Utilización de la API:
+
 Finalmente, yendo a lo más entretenido, ya estamos en condiciones de utilizar el desarrollo.
 La URL del endpoint se compone de la siguiente manera:
-http://127.0.0.1:8000/api/youtubeSearch/{texto_a_buscar}
+
+_**<p align="center">http://127.0.0.1:8000/api/youtubeSearch/ + {texto_a_buscar}</p>**_
+
 Un ejemplo:
-http://127.0.0.1:8000/api/youtubeSearch/paradise
+
+_**<p align="center">http://127.0.0.1:8000/api/youtubeSearch/paradise</p>**_
+
 Devolverá resultados relacionados a la palabra ‘paradise’. Palabra o frase, es indistinto:
-http://127.0.0.1:8000/api/youtubeSearch/britney%20spears
+
+_**<p align="center">
+http://127.0.0.1:8000/api/youtubeSearch/britney%20spears</p>**_
+
 Respuesta ejemplo:
+
+<p align="center"><img src="https://i.imgur.com/bpM1cr8.png"></p>
+
 Muy lindo, pero como mencionamos arriba también están a disposición los parámetros opcionales 
-results_per_page, page_token y api_key.
+**results_per_page**, **page_token** y **api_key**.
+
 Un ejemplo puede ser http://127.0.0.1:8000/api/youtubeSearch/eminem?results_per_page=1:
+
+<p align="center"><img src="https://i.imgur.com/9nbXDEY.png"></p>
+
 Y para empezar a recorrer las páginas de resultados:
+
 http://127.0.0.1:8000/api/youtubeSearch/eminem?results_per_page=1&page_token=CAEQAA
+
 Llegado este punto, y a medida que sumamos parámetros, puede resultar más cómodo consumir la API por medio 
-de un cliente como Postman.
-El último parámetro opcional es api_key, que se dan de alta desde la Google Developer Platform, este proyecto por 
-defecto funciona con la mía personal, pero se puede especificar una a gusto mediante el parámetro.
-Observaciones:
-▪ Si se ingresa un valor 
-inválido en el parámetro 
-results_per_page, defaultea 
-a 10
-▪ Si se ingresa un valor 
-inválido en el parámetro 
-page_token o api_key, se 
-mostrará el mensaje error 
-tal cual devuelve la API de 
-YouTube. 
-▪ Estructura del proyecto:
+de un cliente como <a href="https://www.postman.com/">Postman</a>.
+
+<p align="center"><img src="https://i.imgur.com/NMbsKRv.png"></p>
+
+El último parámetro opcional es un **api_key**, los cuales se dan de alta desde la <a href="https://console.developers.google.com/apis/credentials">Google Cloud Platform</a>, este proyecto por defecto funciona con la mía personal, pero se puede especificar una a gusto mediante el parámetro.
+
+#### Observaciones:
+
+- Si se ingresa un valor inválido en el parámetro **_results_per_page_**, defaultea a **10**.
+- Si se ingresa un valor inválido en el parámetro **_page_token_** o **_api_key_**, se mostrará el mensaje error tal cual devuelve la API de YouTube.
+
+<p align="center"><img src="https://i.imgur.com/rokIz2c.png"></p>
+
+#### Estructura del proyecto:
+
 El grueso del desarrollo se encuentra en los siguientes archivos del proyecto:
-routes->api.php
-app->Http->Controllers->YoutubeController.php
-tests->Feature->YoutubeControllerTest.php
-Todo está comentado como corresponde a efectos de facilitar la comprensión del código:
-▪ Tests:
-Como mencioné al principio, se agregaron un par de tests para validar el funcionamiento del servicio. 
-Estos son:
-1. Validar que una consulta ejemplo devuelva status HTTP 200 (OK)
-2. Validar que el formato del JSON obtenido se corresponda con el esperado
+
+`routes->api.php`
+
+`app->Http->Controllers->YoutubeController.php`
+
+`tests->Feature->YoutubeControllerTest.php`
+
+A efectos de facilitar la comprensión del código, todo está comentado como corresponde:
+
+<p align="center"><img src="https://i.imgur.com/6ApNbjJ.png"></p>
+
+#### Tests:
+
+Como mencioné al principio, se agregaron un par de tests para validar el funcionamiento del servicio. Estos son:
+
+1. Validar que una consulta ejemplo devuelva status HTTP 200 - OK.
+2. Validar que el formato del JSON resultante se corresponda con el estipulado.
+
 Para ejecutarlos, simplemente se corre el siguiente comando desde la carpeta del proyecto:
+```
 php artisan test tests\Feature\YoutubeControllerTest.php
-▪ Cierre:
-Me alegra poder decir que la condición de ‘Have fun!!’ de los requerimientos también la cumplí, 
-realmente entretenido el proyecto! 
-Muchas gracias para quien haya leído hasta aquí, saludos!
+```
+
+#### Cierre:
+Me alegra poder decir que el _‘Have fun!!’_ de la consigna del Challenge también fue cumplida, ¡Realmente entretenido el proyecto!
+
+Para quien haya leído hasta aquí, ¡Muchas gracias y saludos!
+
+_<p align="right">Matías Carabella - Back-end Developer</p>_
