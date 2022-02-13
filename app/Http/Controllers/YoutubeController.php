@@ -2,67 +2,73 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Throwable;
 
 class YoutubeController extends Controller
 {
-    // FUNCIÓN QUE CONSUME LA API DE YOUTUBE
-    function searchByKeyword($keyword)
+    const RESULTS_MIN = 1;
+    const RESULTS_MAX = 10;
+    const RESULTS_DEFAULT = 10;
+    const API_KEY_DEFAULT = 'AIzaSyAwAlrrnyT9eDQ0mOKslcPcM068EeDxjpY';
+
+    public function searchByKeyword($keyword)
     {
-        // ARMANDO EL ARRAY CON LOS PARÁMETROS DE LA QUERY
+
+        /**
+         * Checking for Google API Key parameter (Optional),
+         * If present, we use it.
+         * For Demo purposes, if not present we use my personal API Key.
+         */
+        $apiKey = isset($_GET['api_key']) ? $_GET['api_key'] : self::API_KEY_DEFAULT;
+
+        /**
+         * Checking for Results per Page parameter (Optional),
+         * - Must be numeric
+         * - Must be between 0 and 10
+         * If not present or invalid, it defaults to 10.
+         */
+        $resultsPerPage = (isset($_GET['results_per_page']) && is_numeric($_GET['results_per_page']) &&
+                            $_GET['results_per_page'] > self::RESULTS_MIN && $_GET['results_per_page'] <= self::RESULTS_MAX) ?
+                            $_GET['results_per_page'] : self::RESULTS_DEFAULT;
+
+        /**
+         * Checking for Page Token parameter (Optional),
+         * This allows the user to navigate the result pages.
+         */
+        $pageToken = isset($_GET['page_token']) ? $_GET['page_token'] : null;
+        
         $queryParams = [
             'part' => 'snippet',
             'type' => 'video',
-            'q' => $keyword
+            'q' => $keyword,
+            'key' => $apiKey,
+            'maxResults' => $resultsPerPage,
+            'pageToken' => $pageToken,
         ];
-        /* CHEQUEANDO SI SE RECIBIÓ UNA API KEY, PARA AUTORIZAR EL USO DE LA API DE GOOGLE*/
-        if(isset($_GET['api_key']))
-        {
-            // CASO POSITIVO LO AGREGO AL ARRAY DE PARÁMETROS
-            $queryParams = $queryParams + array("key" => $_GET['api_key']);
-        }
-        else
-        {
-            /* A EFECTOS DE ESTE PROYECTO DEMO, SI NO SE PROVEYÓ UNA CLAVE USO LA MÍA PROPIA */
-            $queryParams = $queryParams + array("key" => "AIzaSyAwAlrrnyT9eDQ0mOKslcPcM068EeDxjpY");
-        }
-        /* CHEQUEANDO SI SE RECIBIÓ EL PARÁMETRO OPCIONAL results_per_page
-            Y VALIDANDO QUE SEA UN NÚMERO ENTRE 0 Y 10, ACORDE AL REQUERIMIENTO DEL PROYECTO */
-        if(isset($_GET['results_per_page']) && 
-            is_numeric($_GET['results_per_page']) &&
-            $_GET['results_per_page'] > 0 &&
-            $_GET['results_per_page'] <= 10)
-        {
-            // CASO POSITIVO AGREGARLO AL ARRAY DE PARÁMETROS
-            $queryParams = $queryParams + array("maxResults" => $_GET['results_per_page']);
-        }
-        else
-        {
-            // CASO CONTRARIO DEFAULTEO A 10
-            $queryParams = $queryParams + array("maxResults" => 10);
-        }
-        /* CHEQUEANDO EL OTRO PARÁMETRO OPCIONAL, page_token 
-        QUE PERMITE IR RECORRIENDO LAS PÁGINAS DE RESULTADOS */
-        if(isset($_GET['page_token']))
-        {
-            $queryParams = $queryParams + array("pageToken" => $_GET['page_token']);
-        }
-        // CONSUMO LA API
-        $response = Http::get("https://www.googleapis.com/youtube/v3/search",$queryParams);
-        // ME ASEGURO DE HABER OBTENIDO RESULTADOS ANTES DE AVANZAR
-        if(array_key_exists('items', json_decode($response->body(), true))){
-            /* LE PASO EL JSON OBTENIDO A LA FUNCIÓN QUE SE ENCARGA DE DARLE EL FORMATO ACORDE
-            A LOS LINEAMIENTOS DEL PROYECTO Y HAGO EL RETURN */
-            return $this->formatResponse($response);
-        }
-        else
-        {
-            // SI NO OBTUVE RESULTADOS MUESTRO EL MENSAJE DE ERROR TAL CUAL LO DEVUELVE LA API
-            return $response;
+
+        try {
+            $response = Http::get("https://www.googleapis.com/youwtube/v3/search", $queryParams);
+            /**
+             * Check whether or not the Response has items,
+             * - If yes return it with the corresponding format
+             * - If not return the API's error message
+             */
+            return array_key_exists('items', json_decode($response->body(), true)) ? 
+                    $this->formatResponse($response) :
+                    new Response($response->body(), $response->status(), ['Content-Type' => 'application/json']);
+
+        } catch (Exception $e) {
+            abort($e->getCode(), $e->getMessage());
+        } catch (Throwable) {
+            abort(500);
         }
     }
 
-    public function formatResponse($response)
+    private function formatResponse($response)
     {
         // CONVIRTIENDO EL JSON A UN ARRAY TRABAJABLE
         $responseArray = json_decode($response->body(), true);
