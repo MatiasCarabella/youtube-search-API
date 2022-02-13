@@ -169,7 +169,7 @@ A efectos de facilitar la comprensión del código, todo está comentado como co
 
 ### Tests
 
-Como mencioné al principio, se agregaron un par de tests para validar el funcionamiento del servicio. Estos son:
+Como se mencionó al inicio, hay tests para validar el funcionamiento del servicio. Estos son:
 
 1. Validar que una consulta ejemplo devuelva status HTTP 200 - OK.
 2. Validar que el formato del JSON resultante se corresponda con el estipulado.
@@ -178,6 +178,7 @@ Para ejecutarlos, simplemente se corre el siguiente comando desde la carpeta del
 ```
 php artisan test tests\Feature\YoutubeControllerTest.php
 ```
+<p align="center"><img src="https://i.imgur.com/NijV50J.png"></p>
 
 ### Cierre
 Me alegra poder decir que el _‘Have fun!!’_ de la consigna del Challenge también fue cumplida, ¡Realmente entretenido el proyecto!
