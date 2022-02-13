@@ -29,7 +29,7 @@ class YoutubeController extends Controller
          * If not present or invalid, it defaults to 10.
          */
         $resultsPerPage = (isset($_GET['results_per_page']) && is_numeric($_GET['results_per_page']) &&
-                            $_GET['results_per_page'] > self::RESULTS_MIN && $_GET['results_per_page'] <= self::RESULTS_MAX) ?
+                            $_GET['results_per_page'] >= self::RESULTS_MIN && $_GET['results_per_page'] <= self::RESULTS_MAX) ?
                             $_GET['results_per_page'] : self::RESULTS_DEFAULT;
 
         /**
