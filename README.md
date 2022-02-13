@@ -7,56 +7,124 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Documento Técnico Proyecto Piloto Aivo – Matías Carabella
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Youtube Endpoint
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Requerimiento:
+- Desarrollar un endpoint que devuelva hasta 10 resultados de una búsqueda en YouTube, dada una 
+palabra clave.
+▪ Parámetros obligatorios:
+- published_at*
+- id
+- title
+- description
+- thumbnail
+* Se observa que se usa la notación ‘snakecase’ (separando las palabras con guiones bajos), en base a 
+esto todos los demás parámetros respetarán esta convención
+▪ Parámetros opcionales:
+- extra (datos adicionales que se quieran agregar a criterio libre)
+En cuanto a esto decidí agregar los parámetros direct_link y channel_title
+En conclusión, los JSONs de los videos obtenidos tendrán el siguiente formato:
+A su vez, la lista de videos obtenidos estará contenida en un parámetro videos, el cual compartirá el ‘nivel 
+superior’ del JSON respuesta con los siguientes parámetros generales:
+- total_results
+- results_per_page
+- next_page_token* (permite navegar las páginas de resultados obtenidos)
+- prev_page_token* (idem ‘next_page_token’)
+Finalmente, el formato del JSON respuesta será el siguiente:
+* El parámetro next_page_token sólo aparecerá si efectivamente hay más páginas de resultados, 
+asimismo, prev_page_token se mostrará únicamente si no nos encontramos posicionados en la página 1.
+▪ Condiciones generales:
+- Proyecto desarrollado en PHP7: 
+Se desarrolló utilizando la versión más nueva de PHP7 al día de la fecha: PHP 7.4.16
+- Framework opcional y a elección:
+El proyecto se desarrolló con Laravel 8 y Composer
+- El proyecto debe estar disponible en GitHub o BitBucket:
+Se eligió GitHub, en el siguiente repositorio: MatiasCarabella/youtubeEndpoint (github.com)
+- El proyecto debe ser testeable localmente, con la documentación necesaria de cómo hacerlo:
+Correcto, a la brevedad estaré abordando el sencillo proceso de cómo hacer correr la aplicación
+- Tests - Opcionales pero valorados:
+Los hay, se complementó el proyecto con un par de tests, que también detallaré más adelante.
+- Todo valor agregado es bienvenido:
+La aplicación tiene acepta una serie de argumentos opcionales que complementan la ‘keyword’ 
+central, que también se detallarán eventualmente, a priori adelanto que son:
+• api_key
+(indica la clave de autenticación obligatoria para usar la API de Google/Youtube, si 
+este parámetro está ausente – considerando que es un proyecto demo – se usa mi 
+key personal)
+• results_per_page
+(modifica la cantidad de resultados por página, hasta 10 como indica el 
+requerimiento, si este parámetro está ausente el default es 10)
+• page_token
+(permite navegar entre las distintas páginas de resultados, dando uso a los 
+parámetros next_page_token y prev_page_token, si este parámetro está ausente 
+simplemente se posiciona en la página #1)
+▪ Instalación:
+Para ejecutar correctamente el proyecto se requieren:
+- PHP 7.4.16, u otra versión de PHP7 en su defecto.
+- Composer, como administrador de dependencias
+- Git, opcional pero sugerido para agilizar el proceso
+Teniendo eso, los pasos a seguir son los siguientes:
+1. Ingresar al repositorio del proyecto en GitHub y copiar la URL del mismo:
+https://github.com/MatiasCarabella/youtubeEndpoint.git
+2. Crear la carpeta en donde se desee descargar el proyecto, acceder a ella desde la consola de 
+preferencia (como puede ser el cmd en Windows) y ejecutar los siguientes comandos:
+git init
+git pull https://github.com/MatiasCarabella/youtubeEndpoint.git
+3. Ya tenemos el proyecto descargado, ahora -aún desde la consola- ejecutamos el siguiente comando 
+para descargar las dependencias correspondientes:
+composer install
+4. Por último, se prepara el archivo .env y se genera la clave de encriptación necesaria con los 
+siguientes comandos:
+copy .env.example .env (Windows) ó cp .env.example .env (Linux)
+php artisan key:generate
+Listo todo, de ahora en adelante la forma de ejecutar el proyecto desde su carpeta es con el comando
+php artisan serve
+Como validación, si accedemos a esa URL ya deberíamos poder ver la ‘Laravel homepage’:
+▪ Utilizando el endpoint: 
+Finalmente, yendo a lo más entretenido, ya estamos en condiciones de utilizar el desarrollo.
+La URL del endpoint se compone de la siguiente manera:
+http://127.0.0.1:8000/api/youtubeSearch/{texto_a_buscar}
+Un ejemplo:
+http://127.0.0.1:8000/api/youtubeSearch/paradise
+Devolverá resultados relacionados a la palabra ‘paradise’. Palabra o frase, es indistinto:
+http://127.0.0.1:8000/api/youtubeSearch/britney%20spears
+Respuesta ejemplo:
+Muy lindo, pero como mencionamos arriba también están a disposición los parámetros opcionales 
+results_per_page, page_token y api_key.
+Un ejemplo puede ser http://127.0.0.1:8000/api/youtubeSearch/eminem?results_per_page=1:
+Y para empezar a recorrer las páginas de resultados:
+http://127.0.0.1:8000/api/youtubeSearch/eminem?results_per_page=1&page_token=CAEQAA
+Llegado este punto, y a medida que sumamos parámetros, puede resultar más cómodo consumir la API por medio 
+de un cliente como Postman.
+El último parámetro opcional es api_key, que se dan de alta desde la Google Developer Platform, este proyecto por 
+defecto funciona con la mía personal, pero se puede especificar una a gusto mediante el parámetro.
+Observaciones:
+▪ Si se ingresa un valor 
+inválido en el parámetro 
+results_per_page, defaultea 
+a 10
+▪ Si se ingresa un valor 
+inválido en el parámetro 
+page_token o api_key, se 
+mostrará el mensaje error 
+tal cual devuelve la API de 
+YouTube. 
+▪ Estructura del proyecto:
+El grueso del desarrollo se encuentra en los siguientes archivos del proyecto:
+routes->api.php
+app->Http->Controllers->YoutubeController.php
+tests->Feature->YoutubeControllerTest.php
+Todo está comentado como corresponde a efectos de facilitar la comprensión del código:
+▪ Tests:
+Como mencioné al principio, se agregaron un par de tests para validar el funcionamiento del servicio. 
+Estos son:
+1. Validar que una consulta ejemplo devuelva status HTTP 200 (OK)
+2. Validar que el formato del JSON obtenido se corresponda con el esperado
+Para ejecutarlos, simplemente se corre el siguiente comando desde la carpeta del proyecto:
+php artisan test tests\Feature\YoutubeControllerTest.php
+▪ Cierre:
+Me alegra poder decir que la condición de ‘Have fun!!’ de los requerimientos también la cumplí, 
+realmente entretenido el proyecto! 
+Muchas gracias para quien haya leído hasta aquí, saludos!
