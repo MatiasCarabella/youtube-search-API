@@ -7,41 +7,54 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Documento Técnico Proyecto Piloto Aivo – Matías Carabella
+## Youtube Search API
 
-### Youtube Endpoint
+###  Documento Técnico - Aivo Challenge
 
-Requerimiento:
+#### Requerimiento:
 - Desarrollar un endpoint que devuelva hasta 10 resultados de una búsqueda en YouTube, dada una 
 palabra clave.
-▪ Parámetros obligatorios:
-- published_at*
-- id
-- title
-- description
-- thumbnail
-* Se observa que se usa la notación ‘snakecase’ (separando las palabras con guiones bajos), en base a 
+
+##### Parámetros obligatorios:
+- **_published_at_** **(*)**
+- **_id_**
+- **_title_**
+- **_description_**
+- **_thumbnail_**
+
+**(*)** - Se observa que se usa la notación ‘snakecase’ _(separando las palabras con guiones bajos)_, en base a 
 esto todos los demás parámetros respetarán esta convención
-▪ Parámetros opcionales:
-- extra (datos adicionales que se quieran agregar a criterio libre)
-En cuanto a esto decidí agregar los parámetros direct_link y channel_title
+
+##### Parámetros opcionales:
+- **_extra_** _(datos adicionales que se quieran agregar a criterio libre)_
+
+En cuanto a esto decidí agregar los parámetros **_direct_link_** y **_channel_title_**
+
 En conclusión, los JSONs de los videos obtenidos tendrán el siguiente formato:
+
+<p align="center"><img src="https://i.imgur.com/Xj3h916.png"></p>
+
 A su vez, la lista de videos obtenidos estará contenida en un parámetro videos, el cual compartirá el ‘nivel 
 superior’ del JSON respuesta con los siguientes parámetros generales:
-- total_results
-- results_per_page
-- next_page_token* (permite navegar las páginas de resultados obtenidos)
-- prev_page_token* (idem ‘next_page_token’)
+- **_total_results_**
+- **_results_per_page_**
+- **_next_page_token_** **(*)** _(permite navegar las páginas de resultados obtenidos)_
+- **_prev_page_token_** **(*)** _(idem ‘next_page_token’)_
+
 Finalmente, el formato del JSON respuesta será el siguiente:
-* El parámetro next_page_token sólo aparecerá si efectivamente hay más páginas de resultados, 
-asimismo, prev_page_token se mostrará únicamente si no nos encontramos posicionados en la página 1.
-▪ Condiciones generales:
-- Proyecto desarrollado en PHP7: 
-Se desarrolló utilizando la versión más nueva de PHP7 al día de la fecha: PHP 7.4.16
+
+<p align="center"><img src="https://i.imgur.com/4qLl599.png"></p>
+
+**(*)** - El parámetro **_next_page_token_** sólo aparecerá si efectivamente hay más páginas de resultados, 
+asimismo, **_prev_page_token_** se mostrará únicamente si no nos encontramos posicionados en la página 1.
+
+#### Condiciones generales:
+- Proyecto desarrollado en **PHP7**:
+    - Se desarrolló utilizando la versión más nueva de PHP7 al día de la fecha: **PHP 7.4.16**
 - Framework opcional y a elección:
-El proyecto se desarrolló con Laravel 8 y Composer
+    - El proyecto se desarrolló con **Laravel 8** y **Composer**
 - El proyecto debe estar disponible en GitHub o BitBucket:
-Se eligió GitHub, en el siguiente repositorio: MatiasCarabella/youtubeEndpoint (github.com)
+    - Se eligió **GitHub**, en el siguiente repositorio: <a href="https://github.com/MatiasCarabella/youtubeSearchAPI">_MatiasCarabella/youtubeSearchAPI (github.com)_</a>
 - El proyecto debe ser testeable localmente, con la documentación necesaria de cómo hacerlo:
 Correcto, a la brevedad estaré abordando el sencillo proceso de cómo hacer correr la aplicación
 - Tests - Opcionales pero valorados:
