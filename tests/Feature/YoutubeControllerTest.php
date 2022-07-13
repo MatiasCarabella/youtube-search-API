@@ -10,13 +10,25 @@ class YoutubeControllerTest extends TestCase
 
     // Check for Http Status 200 - OK
     public function testHttpStatus200() {
-        $this->json('GET', '/api/youtubeSearch/' . self::EXAMPLE_KEYWORD)
+
+        $body = [
+            'search' => self::EXAMPLE_KEYWORD
+        ];
+
+        $this->json('GET', '/api/youtube-search/', $body)
          ->assertStatus(200);
     }
-    
+
     // Validating that the Response JSON has the correct structure
     public function testReturnsDataInValidFormat() {
-        $this->json('GET', '/api/youtubeSearch/' . self::EXAMPLE_KEYWORD)
+
+        $body = [
+            'search' => self::EXAMPLE_KEYWORD,
+            'results_per_page' => 5,
+            "page_token" => "CAUQAA",
+        ];
+
+        $this->json('GET', '/api/youtube-search/', $body)
          ->assertJsonStructure(
              [
                  'total_results',
