@@ -125,31 +125,33 @@ Eso es esperable _(puesto que no le hemos indicado el texto a buscar)_, pero nos
 Ahora, para probar efectivamente el servicio podemos utilizar un cliente como <a href="https://www.postman.com/">**Postman**</a>:
 
 <p align="center"><img src="https://i.imgur.com/LcEnhgM.png"></p>
+Como bien se puede apreciar allí, es simplemente cuestión de enviar un JSON con el texto a buscar en el campo 'search':
 
-Muy lindo, pero como mencionamos arriba también están a disposición los parámetros opcionales 
-**results_per_page**, **page_token** y **api_key**.
+```json
+{
+    "search": "Paradise"
+}
+```
 
-Un ejemplo puede ser http://127.0.0.1:8000/api/youtubeSearch/eminem?results_per_page=1:
+El último requerimiento obligatorio es una **api_key** de Google, las cuales se dan de alta desde la <a href="https://console.developers.google.com/apis/credentials">**Google Cloud Platform**</a>.<br>
+Esta puede configurarse de dos maneras:<br>
+- Como **Header** del Request _('api_key': 'XXXXXXXXXXXXX')_<br>
+- En la variable 'API_KEY_DEFAULT' archivo **ENV** del proyecto _(En caso de no enviarse como Header, se lee de aquí)_<br>
+```
+API_KEY_DEFAULT=XXXXXXXXXXXXX
+```
 
-<p align="center"><img src="https://i.imgur.com/9nbXDEY.png"></p>
+En ambos casos, si se coloca un **api_key** inválido se mostrará el error tal cual lo retorna la API de Google:
+<p align="center"><img src="https://i.imgur.com/1HWHXzm.png"></p>
 
-Y para empezar a recorrer las páginas de resultados:
+Finalmente, y como se mencionó al principio, también están a disposición los campos opcionales **results_per_page**, **page_token**.
 
-http://127.0.0.1:8000/api/youtubeSearch/eminem?results_per_page=1&page_token=CAEQAA
-
-Llegado este punto, y a medida que sumamos parámetros, puede resultar más cómodo consumir la API por medio 
-de un cliente como <a href="https://www.postman.com/">Postman</a>.
-
-<p align="center"><img src="https://i.imgur.com/NMbsKRv.png"></p>
-
-El último parámetro opcional es un **api_key**, los cuales se dan de alta desde la <a href="https://console.developers.google.com/apis/credentials">Google Cloud Platform</a>, este proyecto por defecto funciona con la mía personal, pero se puede especificar una a gusto mediante el parámetro.
+<p align="center"><img src="https://i.imgur.com/j5ZgZKa.png"></p>
 
 ### Observaciones
 
 - Si se ingresa un valor inválido en el parámetro **_results_per_page_**, defaultea a **10**.
-- Si se ingresa un valor inválido en el parámetro **_page_token_** o **_api_key_**, se mostrará el mensaje error tal cual devuelve la API de YouTube.
-
-<p align="center"><img src="https://i.imgur.com/rokIz2c.png"></p>
+- Si se ingresa un valor inválido en el parámetro **_page_token_** o **_api_key_**, se mostrará el mensaje error tal cual devuelve la API de Google.
 
 ### Estructura del proyecto
 
@@ -159,11 +161,13 @@ El grueso del desarrollo se encuentra en los siguientes archivos del proyecto:
 
 `app->Http->Controllers->YoutubeController.php`
 
-`tests->Feature->YoutubeControllerTest.php`
+`app->Services->YoutubeServices.php`
+
+`tests->Feature->YoutubeTest.php`
 
 A efectos de facilitar la comprensión del código, todo está comentado como corresponde:
 
-<p align="center"><img src="https://i.imgur.com/6ApNbjJ.png"></p>
+<p align="center"><img src="https://i.imgur.com/X4R7C6M.png"></p>
 
 ### Tests
 
@@ -174,9 +178,9 @@ Como se mencionó al inicio, hay tests para validar el funcionamiento del servic
 
 Para ejecutarlos, simplemente se corre el siguiente comando desde la carpeta del proyecto:
 ```
-php artisan test tests\Feature\YoutubeControllerTest.php
+php artisan test tests\Feature\YoutubeTest.php
 ```
-<p align="center"><img src="https://i.imgur.com/NijV50J.png"></p>
+<p align="center"><img src="https://i.imgur.com/cBc7Iox.png"></p>
 
 ### Cierre
 Me alegra poder decir que el _‘Have fun!!’_ de la consigna del Challenge también fue cumplida, ¡Realmente entretenido el proyecto!
