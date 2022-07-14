@@ -1,0 +1,182 @@
+{
+    "kind": "youtube#searchListResponse",
+    "etag": "EW2-GiO2mDqOEhL_I9YhKSF_K0o",
+    "nextPageToken": "CAUQAA",
+    "regionCode": "AR",
+    "pageInfo": {
+        "totalResults": 1000000,
+        "resultsPerPage": 5
+    },
+    "items": [
+        {
+            "kind": "youtube#searchResult",
+            "etag": "3FaaytodDh7Q8_m7XkDYgd3F-gI",
+            "id": {
+                "kind": "youtube#video",
+                "videoId": "1G4isv_Fylg"
+            },
+            "snippet": {
+                "publishedAt": "2011-10-19T02:42:54Z",
+                "channelId": "UCDPM_n1atn2ijUwHd0NNRQw",
+                "title": "Coldplay - Paradise (Official Video)",
+                "description": "Coldplay - Paradise is taken from the album Mylo Xyloto released in 2011 Subscribe for more content from Coldplay: ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/1G4isv_Fylg/default.jpg",
+                        "width": 120,
+                        "height": 90
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/1G4isv_Fylg/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/1G4isv_Fylg/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                    }
+                },
+                "channelTitle": "Coldplay",
+                "liveBroadcastContent": "none",
+                "publishTime": "2011-10-19T02:42:54Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "Z_hCUT8q5T6QRmyKXxiIaL_pXFY",
+            "id": {
+                "kind": "youtube#video",
+                "videoId": "QKcxhQZxvdw"
+            },
+            "snippet": {
+                "publishedAt": "2012-11-05T10:00:39Z",
+                "channelId": "UCDPM_n1atn2ijUwHd0NNRQw",
+                "title": "Coldplay - Paradise (Live 2012 from Paris)",
+                "description": "Coldplay - Paradise (Live 2012 from Paris) is taken from the Mylo Xyloto Tour Coldplay - Paradise is taken from the album Mylo ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/QKcxhQZxvdw/default.jpg",
+                        "width": 120,
+                        "height": 90
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/QKcxhQZxvdw/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/QKcxhQZxvdw/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                    }
+                },
+                "channelTitle": "Coldplay",
+                "liveBroadcastContent": "none",
+                "publishTime": "2012-11-05T10:00:39Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "m3pKBB9-mfbFxJwrLMyiA8wn7gc",
+            "id": {
+                "kind": "youtube#video",
+                "videoId": "fPO76Jlnz6c"
+            },
+            "snippet": {
+                "publishedAt": "2017-08-01T16:17:01Z",
+                "channelId": "UCnSR7_Oq-MdsZxfogsfk-Ug",
+                "title": "Coolio - Gangsta&#39;s Paradise (feat. L.V.) [Official Music Video]",
+                "description": "Stream/Download: https://tommyboyrecords.lnk.to/CoolioGangstasParadiseWE Make this song your Ringtone: ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/fPO76Jlnz6c/default.jpg",
+                        "width": 120,
+                        "height": 90
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/fPO76Jlnz6c/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/fPO76Jlnz6c/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                    }
+                },
+                "channelTitle": "Tommy Boy",
+                "liveBroadcastContent": "none",
+                "publishTime": "2017-08-01T16:17:01Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "5gCWFJLkXzk0UayqsmWPLYZzbxU",
+            "id": {
+                "kind": "youtube#video",
+                "videoId": "UzOuA-7jJqk"
+            },
+            "snippet": {
+                "publishedAt": "2020-05-10T23:22:21Z",
+                "channelId": "UC_oVSWhb0PFtiRAiV4-TUQg",
+                "title": "Coldplay ; Paradise // Traducida al Español.",
+                "description": "gracias por ver. 'ponies' era mi anterior nombre, lo cambié porque pues fucking nombre ridículo.",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/UzOuA-7jJqk/default.jpg",
+                        "width": 120,
+                        "height": 90
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/UzOuA-7jJqk/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/UzOuA-7jJqk/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                    }
+                },
+                "channelTitle": "queen of broken hearts",
+                "liveBroadcastContent": "none",
+                "publishTime": "2020-05-10T23:22:21Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "IyDh7JbxX8OpcsRLSgqmAa41lFI",
+            "id": {
+                "kind": "youtube#video",
+                "videoId": "AwcWwQwjGTY"
+            },
+            "snippet": {
+                "publishedAt": "2018-12-07T00:00:07Z",
+                "channelId": "UCDPM_n1atn2ijUwHd0NNRQw",
+                "title": "Coldplay - Paradise (Live in São Paulo)",
+                "description": "Coldplay - Paradise (Live in São Paulo) is taken from the Live In São Paulo concert film filmed on 7 and 8 November 2017, part of ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://i.ytimg.com/vi/AwcWwQwjGTY/default.jpg",
+                        "width": 120,
+                        "height": 90
+                    },
+                    "medium": {
+                        "url": "https://i.ytimg.com/vi/AwcWwQwjGTY/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                    },
+                    "high": {
+                        "url": "https://i.ytimg.com/vi/AwcWwQwjGTY/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                    }
+                },
+                "channelTitle": "Coldplay",
+                "liveBroadcastContent": "none",
+                "publishTime": "2018-12-07T00:00:07Z"
+            }
+        }
+    ]
+}
