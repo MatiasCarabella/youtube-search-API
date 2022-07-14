@@ -153,7 +153,7 @@ Como bien se puede apreciar allí, es simplemente cuestión de enviar un JSON co
 }
 ```
 
-El último requerimiento obligatorio es una **api_key** de Google, las cuales se dan de alta desde la <a href="https://console.developers.google.com/apis/credentials">**Google Cloud Platform**</a>.<br>
+El último requerimiento obligatorio es una **api_key**, las cuales se dan de alta desde la <a href="https://console.developers.google.com/apis/credentials">**Google Cloud Platform**</a>.<br>
 Esta puede configurarse de dos maneras:<br>
 - Como **Header** del Request _('api_key': 'XXXXXXXXXXXXX')_<br>
 - En la variable 'API_KEY_DEFAULT' archivo **ENV** del proyecto _(En caso de no enviarse como Header, se lee de aquí)_<br>
