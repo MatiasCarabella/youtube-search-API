@@ -48,9 +48,11 @@ asimismo, **_prev_page_token_** se mostrará únicamente si no nos encontramos p
 
 ### Condiciones generales
 - _Proyecto desarrollado en **PHP7**:_
-    - Se desarrolló utilizando la versión más nueva de PHP7 al día de la fecha: **PHP 7.4.16**
+    - ~~Se desarrolló utilizando la versión más nueva de PHP7 al día de la fecha: **PHP 7.4.16**~~
+    - _(Update 12/07/2022):_ Se actualizó a la versión más reciente de PHP8: **PHP 8.1.8**
 - _Framework opcional y a elección:_
     - El proyecto se desarrolló con **Laravel 8** y **Composer**
+    - _(Update 12/07/2022):_ Se actualizó a **Laravel 9**
 - _El proyecto debe estar disponible en GitHub o BitBucket:_
     - Se eligió **GitHub**, en el siguiente repositorio: <a href="https://github.com/MatiasCarabella/youtubeSearchAPI">_MatiasCarabella/youtubeSearchAPI (github.com)_</a>
 - _El proyecto debe ser testeable localmente, con la documentación necesaria de cómo hacerlo:_
@@ -65,7 +67,7 @@ asimismo, **_prev_page_token_** se mostrará únicamente si no nos encontramos p
 
 ### Instalación
 Para ejecutar correctamente el proyecto se requieren:
-- **PHP 7.4.16**, u otra versión de PHP7 en su defecto.
+- **PHP 8.1.8**, o en su defecto otra versión compatible de PHP8.
 - <a href="https://getcomposer.org/">**Composer**</a>, como administrador de dependencias.
 - <a href="https://git-scm.com/downloads">**Git**</a>, opcional pero sugerido para agilizar el proceso.
 
@@ -111,11 +113,16 @@ Como validación, si accedemos a esa URL ya deberíamos poder ver la _‘Laravel
 ### Utilización de la API
 
 Finalmente, yendo a lo más entretenido, ya estamos en condiciones de utilizar el desarrollo.
-La URL del endpoint se compone de la siguiente manera:
+La URL del endpoint es la siguiente:
 
-_**<p align="center">http://127.0.0.1:8000/api/youtubeSearch/ + {texto_a_buscar}</p>**_
+_**<p align="center">http://127.0.0.1:8000/api/youtube-search</p>**_
 
-Un ejemplo:
+Si ingresamos a dicha URL, veremos algo como esto:
+
+<p align="center"><img src="https://i.imgur.com/pbnIuWg.png"></p>
+
+Eso es esperable _(puesto que no le hemos indicado el texto a buscar)_, pero nos da confirmación de que la API se está ejecutando exitosamente!<br>
+Ahora, para probar efectivamente el servicio podemos utilizar un cliente como <a href="https://www.postman.com/">Postman</a>.
 
 _**<p align="center">http://127.0.0.1:8000/api/youtubeSearch/paradise</p>**_
 
