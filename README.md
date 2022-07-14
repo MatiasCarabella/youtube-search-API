@@ -28,9 +28,20 @@ esto todos los demás parámetros respetarán esta convención.
 
 En cuanto a esto decidí agregar los parámetros **_direct_link_** y **_channel_title_**
 
-En conclusión, los JSONs de los videos obtenidos tendrán el siguiente formato:
-
-<p align="center"><img src="https://i.imgur.com/Xj3h916.png"></p>
+En conclusión, cada **video** obtenido tendrá el siguiente formato:
+```json
+{
+   "published_at":"2011-10-19T02:42:54Z",
+   "id":"1G4isv_Fylg",
+   "title":"Coldplay - Paradise (Official Video)",
+   "description":"Coldplay - Paradise is taken from the album Mylo Xyloto released in 2011 [...]",
+   "thumbnail":"https://i.ytimg.com/vi/1G4isv_Fylg/default.jpg",
+   "extra":{
+      "direct_link":"https://www.youtube.com/watch?v=1G4isv_Fylg",
+      "channel_title":"Coldplay"
+   }
+}
+```
 
 A su vez, la lista de videos obtenidos estará contenida en un parámetro videos, el cual compartirá el ‘nivel 
 superior’ del JSON respuesta con los siguientes parámetros generales:
@@ -39,9 +50,18 @@ superior’ del JSON respuesta con los siguientes parámetros generales:
 - **_next_page_token_** **(*)** _(permite navegar las páginas de resultados obtenidos)_
 - **_prev_page_token_** **(*)** _(idem ‘next_page_token’)_
 
-Finalmente, el formato del JSON respuesta será el siguiente:
+Finalmente, el formato general de la respuesta será el siguiente:
 
-<p align="center"><img src="https://i.imgur.com/4qLl599.png"></p>
+```json
+{
+   "next_page_token":"CAEQAA",
+   "total_results":1000000,
+   "results_per_page":1,
+   "videos":[
+      
+   ]
+}
+```
 
 **(*)** - El parámetro **_next_page_token_** sólo aparecerá si efectivamente hay más páginas de resultados, 
 asimismo, **_prev_page_token_** se mostrará únicamente si no nos encontramos posicionados en la página 1.
