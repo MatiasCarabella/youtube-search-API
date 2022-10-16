@@ -6,7 +6,12 @@ use Illuminate\Http\JsonResponse;
 
 class BaseService
 {
-    public function errorResponse (int $code, string $message)
+    /**
+     * @param int $code
+     * @param string $message
+     * @return JsonResponse
+     */
+    public function errorResponse (int $code, string $message): JsonResponse
     {
         $response = [
             "error" => [

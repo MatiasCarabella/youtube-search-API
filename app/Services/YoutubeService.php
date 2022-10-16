@@ -10,6 +10,10 @@ use Throwable;
 
 class YoutubeService extends BaseService
 {
+    /**
+     * @param array $queryParams
+     * @return array|JsonResponse|Response
+     */
     public function searchByKeyword(array $queryParams)
     {
         try {
@@ -18,19 +22,23 @@ class YoutubeService extends BaseService
              /**
              * Check whether the Request was successful
              * - If yes return it with the corresponding format
-             * - If not return the API's error message as is
+             * - If not return the API error message as is
              */
             return $response->status() === Response::HTTP_OK ?
                         $this->formatResponse($response) :
                         new Response($response->body(), $response->status(), ['Content-Type' => 'application/json']);
         } catch (Exception $e) {
             return $this->errorResponse($e->getCode(), $e->getMessage());
-        } catch (Throwable $t) {
+        } catch (Throwable) {
             return $this->errorResponse(Response::HTTP_INTERNAL_SERVER_ERROR, "An error has occurred, please try again later.");
         }
     }
 
-    private function formatResponse($response)
+    /**
+     * @param $response
+     * @return array
+     */
+    private function formatResponse($response): array
     {
         // Convert the raw Response's body into an array
         $body = json_decode($response->body(), true);
@@ -50,7 +58,7 @@ class YoutubeService extends BaseService
                         "channel_title" => $item['snippet']['channelTitle']
                 ]
             ];
-            array_push($videos, $video);
+            $videos[] = $video;
         }
 
         $formattedResponse = Array();
@@ -61,10 +69,10 @@ class YoutubeService extends BaseService
         // If there's more pages, the 'nextPageToken' element is displayed
         $formattedResponse += array_key_exists('nextPageToken', $body) ? ["next_page_token" => $body['nextPageToken']] : [];
 
-        return $formattedResponse += [
-            "total_results" => $body['pageInfo']['totalResults'],
-            "results_per_page" => $body['pageInfo']['resultsPerPage'],
-            "videos" => $videos
-        ];
+        return $formattedResponse + [
+                "total_results" => $body['pageInfo']['totalResults'],
+                "results_per_page" => $body['pageInfo']['resultsPerPage'],
+                "videos" => $videos
+            ];
     }
 }

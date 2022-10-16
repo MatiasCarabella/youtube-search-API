@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\YoutubeService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
-use function PHPUnit\Framework\isNull;
+use Illuminate\Http\JsonResponse;
 
 class YoutubeController extends Controller
 {
@@ -14,6 +13,11 @@ class YoutubeController extends Controller
     const RESULTS_MIN = 1;
     const RESULTS_MAX = 10;
 
+    /**
+     * @param Request $request
+     * @param YoutubeService $youtubeService
+     * @return array|JsonResponse|Response
+     */
     public function searchByKeyword(Request $request, YoutubeService $youtubeService)
     {
         // HEADER VALIDATION:
@@ -45,7 +49,7 @@ class YoutubeController extends Controller
          * Checking for Page Token parameter (Optional),
          * This allows the user to navigate the result pages.
          */
-        $pageToken = isset($body->page_token) ? $body->page_token : null;
+        $pageToken = $body->page_token ?? null;
 
         $queryParams = [
             'part' => 'snippet',
