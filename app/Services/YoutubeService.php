@@ -16,7 +16,7 @@ class YoutubeService extends BaseService
             $response = Http::withoutVerifying()->get("https://www.googleapis.com/youtube/v3/search", $queryParams);
 
              /**
-             * Check whether or not the Request was successful
+             * Check whether the Request was successful
              * - If yes return it with the corresponding format
              * - If not return the API's error message as is
              */
