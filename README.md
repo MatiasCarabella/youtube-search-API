@@ -69,7 +69,7 @@ asimismo, **_prev_page_token_** se mostrará únicamente si no nos encontramos p
 ### Condiciones generales
 - _Proyecto desarrollado en **PHP7**:_
     - _Se desarrolló utilizando la versión más nueva de PHP7 al día de la fecha: **PHP 7.4.16**_
-    - _(Update 10/01/2023):_ Se actualizó a la versión más reciente de PHP: **8.2.1**
+    - _(Update 10/01/2023):_ Se actualizó a la versión más reciente: **PHP 8.2.1**
 - _**Framework** opcional y a elección:_
     - _El proyecto se desarrolló con **Laravel 8**_
     - _(Update 12/07/2022):_ Se actualizó a **Laravel 9**
