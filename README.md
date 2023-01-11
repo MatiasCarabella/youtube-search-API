@@ -68,17 +68,17 @@ asimismo, **_prev_page_token_** se mostrará únicamente si no nos encontramos p
 
 ### Condiciones generales
 - _Proyecto desarrollado en **PHP7**:_
-    - Se desarrolló utilizando la versión más nueva de PHP7 al día de la fecha: **PHP 7.4.16**
+    - _Se desarrolló utilizando la versión más nueva de PHP7 al día de la fecha: **PHP 7.4.16**_
     - _(Update 10/01/2023):_ Se actualizó a la versión más reciente de PHP: **8.2.1**
 - _**Framework** opcional y a elección:_
-    - El proyecto se desarrolló con **Laravel 8**
+    - _El proyecto se desarrolló con **Laravel 8**_
     - _(Update 12/07/2022):_ Se actualizó a **Laravel 9**
 - _El proyecto debe estar disponible en **GitHub** o **BitBucket**:_
     - Se eligió **GitHub**, en el siguiente repositorio: <a href="https://github.com/MatiasCarabella/youtubeSearchAPI">_MatiasCarabella/youtubeSearchAPI (github.com)_</a>
 - _El proyecto debe ser **testeable localmente**, con la **documentación** necesaria de cómo hacerlo:_
     - Correcto, a la brevedad estaré abordando el sencillo proceso de cómo hacer correr la aplicación
 - _**Tests** - Opcionales pero valorados:_
-    - Los hay, se complementó el proyecto con un par de tests, que también detallaré más adelante.
+    - Los hay, se mejoró la robustez del proyecto con tests, que también detallaré más adelante.
 - _Todo valor agregado es bienvenido:_
     - La aplicación tiene acepta una serie de argumentos opcionales que complementan la ‘keyword’ central, que también se detallarán eventualmente, a priori adelanto que son:
         -  **api_key** _(indica la clave de autenticación obligatoria para usar la API de Google/Youtube, si este parámetro está ausente – considerando que es un proyecto demo – se usa mi key personal)_
