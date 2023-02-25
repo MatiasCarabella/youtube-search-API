@@ -4,7 +4,5 @@ services:
             context: .
             dockerfile: Dockerfile
         command: 'php artisan serve --host=0.0.0.0'
-        volumes:
-            - .:/youtube-search-api
         ports:
-            - 8000:8000
+            - 8080:8000
