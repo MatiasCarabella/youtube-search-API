@@ -1,10 +1,9 @@
 services: 
-    main:
+    youtube-search-api:
         build: 
             context: .
             dockerfile: Dockerfile
+        image: youtube-search-api
         command: 'php artisan serve --host=0.0.0.0'
-        volumes:
-            - .:/youtube-search-api
         ports:
-            - 8080:8000
+            - 8000:8000
