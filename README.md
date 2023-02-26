@@ -7,28 +7,39 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Youtube Search API - Aivo Challenge - Documento Técnico
+# Youtube Search API - Aivo Challenge - Technical Document
 
-### Requerimiento
-- Desarrollar un endpoint que devuelva hasta 10 resultados de una búsqueda en YouTube, dada una 
-palabra clave.
+## Index
+  * [General requirement](#general-requirement)
+    + [Mandatory parameters](#mandatory-parameters)
+    + [Optional parameters](#optional-parameters)
+  * [Project guidelines](#project-guidelines)
+  * [Installation](#installation)
+    + [PHP | Composer | Artisan](#php--composer--artisan)
+    + [Docker compose](#docker-compose)
+  * [Utilización de la API](#utilización-de-la-api)
+  * [Observaciones](#observaciones)
+  * [Estructura del proyecto](#estructura-del-proyecto)
+  * [Tests](#tests)
+  * [Cierre](#cierre)
 
-#### Parámetros obligatorios
+
+## General requirement
+- Develop an endpoint that returns up to 10 results from a YouTube search, given a keyword
+
+### Mandatory parameters
 - **_published_at_** **(*)**
 - **_id_**
 - **_title_**
 - **_description_**
 - **_thumbnail_**
 
-**(*)** - Se observa que se usa la notación ‘snakecase’ _(separando las palabras con guiones bajos)_, en base a 
-esto todos los demás parámetros respetarán esta convención.
+**(*)** - It is noted that the 'snakecase' notation is used, so all other parameters will adhere to this convention.
 
-#### Parámetros opcionales
-- **_extra_** _(datos adicionales que se quieran agregar a criterio libre)_
+### Optional parameters
+- **_extra_** _(additional data that you want to add at your discretion)_
 
-En cuanto a esto decidí agregar los parámetros **_direct_link_** y **_channel_title_**
-
-En conclusión, cada **video** obtenido tendrá el siguiente formato:
+In regards to this, I decided to add the parameters  **_direct_link_** and **_channel_title_**, so each **video** will have the following format:
 ```json
 {
    "published_at":"2011-10-19T02:42:54Z",
@@ -43,14 +54,13 @@ En conclusión, cada **video** obtenido tendrá el siguiente formato:
 }
 ```
 
-A su vez, la lista de videos obtenidos estará contenida en un parámetro videos, el cual compartirá el ‘nivel 
-superior’ del JSON respuesta con los siguientes parámetros generales:
+The list of fetched videos will be contained in a **_videos_** parameter, which will share the 'top level' of the response JSON with the following general parameters:
 - **_total_results_**
 - **_results_per_page_**
-- **_next_page_token_** **(*)** _(permite navegar las páginas de resultados obtenidos)_
-- **_prev_page_token_** **(*)** _(idem ‘next_page_token’)_
+- **_next_page_token_** **(*)** _(makes it possible to navigate between the result pages)_
+- **_prev_page_token_** **(*)** _(same as ‘next_page_token’)_
 
-Finalmente, el formato general de la respuesta será el siguiente:
+Finally, the general format of the response will be as follows:
 
 ```json
 {
@@ -63,79 +73,79 @@ Finalmente, el formato general de la respuesta será el siguiente:
 }
 ```
 
-**(*)** - El parámetro **_next_page_token_** sólo aparecerá si efectivamente hay más páginas de resultados, 
-asimismo, **_prev_page_token_** se mostrará únicamente si no nos encontramos posicionados en la página 1.
+**(*)** - The **_next_page_token_** parameter will only appear if there are more pages of results, likewise, **_prev_page_token_** will only appear if we are not positioned on page 1.
 
-### Condiciones generales
-- _Proyecto desarrollado en **PHP7**:_
-    - _(13/03/2021):_ Se desarrolló utilizando la versión más nueva de PHP7 al día de la fecha: **PHP 7.4.16**
-    - _(Update 10/01/2023):_ Se actualizó a la versión más reciente: **PHP 8.2.1**
-- _**Framework** opcional y a elección:_
-    - _(13/03/2021):_ El proyecto se desarrolló con **Laravel 8**
-    - _(Update 12/07/2022):_ Se actualizó a **Laravel 9**
-- _El proyecto debe estar disponible en **GitHub** o **BitBucket**:_
-    - Se eligió **GitHub**, en el siguiente repositorio: <a href="https://github.com/MatiasCarabella/youtubeSearchAPI">_MatiasCarabella/youtubeSearchAPI (github.com)_</a>
-- _El proyecto debe ser **testeable localmente**, con la **documentación** necesaria de cómo hacerlo:_
-    - Correcto, a la brevedad estaré abordando el sencillo proceso de cómo hacer correr la aplicación
-- _**Tests** - Opcionales pero valorados:_
-    - Los hay, se mejoró la robustez del proyecto con tests, que también detallaré más adelante.
-- _Todo valor agregado es bienvenido:_
-    - La aplicación tiene acepta una serie de argumentos opcionales que complementan la ‘keyword’ central, que también se detallarán eventualmente, a priori adelanto que son:
-        -  **api_key** _(indica la clave de autenticación obligatoria para usar la API de Google/Youtube, si este parámetro está ausente – considerando que es un proyecto demo – se usa mi key personal)_
-        - **results_per_page** _(modifica la cantidad de resultados por página, hasta 10 como indica el requerimiento, si este parámetro está ausente el default es 10)_
-        - **page_token** _(permite navegar entre las distintas páginas de resultados, dando uso a los parámetros next_page_token y prev_page_token, si este parámetro está ausente simplemente se posiciona en la página #1)_
+## Project guidelines
+- _Must be developed in **PHP7**:_
+    - _(13/03/2021):_ Developed using PHP7's newest version as of today: **PHP 7.4.16**
+    - _(Update 26/02/2023):_ Upgraded to the most recent version: **PHP 8.2.3**
+- _**Framework** of your choice (Optional):_
+    - _(13/03/2021):_ Developed with **Laravel 8**
+    - _(Update 12/07/2022):_ Upgraded to **Laravel 9**
+- _The project must be available on **GitHub** or **BitBucket**:_
+    - **GitHub** was chosen, in the present repository: <a href="https://github.com/MatiasCarabella/youtubeSearchAPI">_MatiasCarabella/youtubeSearchAPI (github.com)_</a>
+- _The project must be **testable** locally, with the necessary **documentation** on how to do it:_
+    - Correct, I will be addressing the simple process of how to get the application running in the next section.
+- _**Tests** (Optional):_
+    - The project was made more robust with the addition of tests, which I will also detail later.
+- _Any added value is welcome:_
+    - The application accepts a series of optional arguments. These are:
+        -  **api_key** _(holds the mandatory authentication key to use the Google/Youtube API, if this parameter is absent it uses the **API_KEY_DEFAULT** from the .env file)_
+        - **results_per_page** _(modifies the number of results per page, up to 10 as indicated in the project requirement, if this parameter is absent the default is also 10)_
+        - **page_token** _(allows to navigate between the different pages of results, making use of the parameters **_next_page_token_** and **_prev_page_token_**, if this parameter is absent it simply defaults to page #1)_
 
-### Instalación
-Para ejecutar correctamente el proyecto se requieren:
-- **PHP 8.2.1**, o en su defecto otra versión compatible de PHP8.
-- <a href="https://getcomposer.org/">**Composer**</a>, como administrador de dependencias.
-- <a href="https://git-scm.com/downloads">**Git**</a>, opcional pero sugerido para agilizar el proceso.
+## Installation
 
-Teniendo eso, los pasos a seguir son los siguientes:
-
-1. Ingresar al <a href="https://github.com/MatiasCarabella/youtubeSearchAPI">repositorio del proyecto en GitHub</a> y copiar la URL del mismo:
-
-_**<p align="center">https://github.com/MatiasCarabella/youtubeSearchAPI.git</p>**_
-
-2. Crear la carpeta en donde se desee descargar el proyecto, acceder a ella desde la terminal/consola de 
-preferencia y ejecutar los siguientes comandos:
+Generate the folder where you'll download the project, access it from the terminal/console of preference and run the following commands:
 
 ```
 git init
-git pull https://github.com/MatiasCarabella/youtubeEndpoint.git
+git pull https://github.com/MatiasCarabella/youtubeSearchAPI.git
 ```
 
-3. Ya tenemos el proyecto descargado, ahora -aún desde la consola- ejecutamos el siguiente comando 
-para descargar las dependencias correspondientes:
+Now, in order to get the application up and running, you have two options:
+### PHP | Composer | Artisan
+Requirements:
+- <a href="https://www.php.net/">**PHP8**</a> installed.
+- <a href="https://getcomposer.org/">**Composer**</a> installed (dependency manager).
+
+1. Execute the following command to download the necessary dependencies:
 
 ```
 composer install
 ```
 
-4. Por último, se prepara el archivo .env y se genera la clave de encriptación necesaria con los 
-siguientes comandos:
+2. Copy the .env file _(Optional: Set a custom **API_KEY_DEFAULT** value)_
 
-`copy .env.example .env` _(Windows)_ ó `cp .env.example .env` _(Linux)_
+`copy .env.example .env` _(Windows)_ 
+
+`cp .env.example .env` _(Linux)_
+
+3. Generate the encryption key
 ```
 php artisan key:generate
 ```
 
-Listo todo, de ahora en adelante la forma de ejecutar el proyecto desde su carpeta es con el comando
+**All done**, from now on you can run the project from its root folder with the following command:
 ```
 php artisan serve
 ```
 <p align="center"><img src="https://i.imgur.com/F9U9cQR.png"></p>
 
-Como validación, si accedemos a esa URL ya deberíamos poder ver la _‘Laravel homepage’_:
+If we access that URL _(http://localhost:8000)_ we should be able to see the 'Laravel homepage':
 
 <p align="center"><img src="https://i.imgur.com/F1Pc6jF.png"></p>
+
+### Docker compose
+Requirements:
+- <a href="https://www.docker.com/">**Docker**</a> installed.
 
 ### Utilización de la API
 
 Finalmente, yendo a lo más entretenido, ya estamos en condiciones de utilizar el desarrollo.
 La URL del endpoint es la siguiente:
 
-_**<p align="center">http://127.0.0.1:8000/api/youtube-search</p>**_
+_**<p align="center">http://localhost:8000/api/youtube-search</p>**_
 
 Si ingresamos a dicha URL, veremos algo como esto:
 
@@ -168,12 +178,12 @@ Finalmente, y como se mencionó al principio, también están a disposición los
 
 <p align="center"><img src="https://i.imgur.com/j5ZgZKa.png"></p>
 
-### Observaciones
+## Observaciones
 
 - Si se ingresa un valor inválido en el parámetro **_results_per_page_**, defaultea a **10**.
 - Si se ingresa un valor inválido en el parámetro **_page_token_** o **_api_key_**, se mostrará el mensaje error tal cual devuelve la API de Google.
 
-### Estructura del proyecto
+## Estructura del proyecto
 
 El grueso del desarrollo se encuentra en los siguientes archivos del proyecto:
 
@@ -189,7 +199,7 @@ A efectos de facilitar la comprensión del código, todo está comentado como co
 
 <p align="center"><img src="https://i.imgur.com/X4R7C6M.png"></p>
 
-### Tests
+## Tests
 
 Como se mencionó al inicio, hay tests para validar el funcionamiento del servicio. Estos son:
 
@@ -202,7 +212,7 @@ php artisan test tests\Feature\YoutubeTest.php
 ```
 <p align="center"><img src="https://i.imgur.com/cBc7Iox.png"></p>
 
-### Cierre
+## Cierre
 Me alegra poder decir que el _‘Have fun!!’_ de la consigna del Challenge también fue cumplida, ¡Realmente entretenido el proyecto!
 
 Para quien haya leído hasta aquí, ¡Muchas gracias y saludos!
