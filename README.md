@@ -16,12 +16,12 @@
   * [Project guidelines](#project-guidelines)
   * [Installation](#installation)
     + [PHP | Composer | Artisan](#php--composer--artisan)
-    + [Docker compose](#docker-compose)
-  * [Utilización de la API](#utilización-de-la-api)
-  * [Observaciones](#observaciones)
-  * [Estructura del proyecto](#estructura-del-proyecto)
+    + [Docker compose](#docker-compose-)
+  * [Using the API](#using-the-api)
+    + [Notes](#notes)
+  * [Project structure](#project-structure)
   * [Tests](#tests)
-  * [Cierre](#cierre)
+  * [Closing thoughts](#closing-thoughts)
 
 
 ## General requirement
@@ -96,12 +96,18 @@ Finally, the general format of the response will be as follows:
 
 ## Installation
 
-Generate the folder where you'll download the project, access it from the terminal/console of preference and run the following commands:
+1. Generate the folder where you'll download the project, access it from the terminal/console of preference and run the following commands:
 
 ```
 git init
 git pull https://github.com/MatiasCarabella/youtubeSearchAPI.git
 ```
+
+2. Copy the .env file _(Optional: Set a custom **API_KEY_DEFAULT** value)_
+
+`copy .env.example .env` _(Windows)_ 
+
+`cp .env.example .env` _(Linux)_
 
 Now, in order to get the application up and running, you have two options:
 ### PHP | Composer | Artisan
@@ -115,32 +121,23 @@ Requirements:
 composer install
 ```
 
-2. Copy the .env file _(Optional: Set a custom **API_KEY_DEFAULT** value)_
-
-`copy .env.example .env` _(Windows)_ 
-
-`cp .env.example .env` _(Linux)_
-
-3. Generate the encryption key
+2. Generate the encryption key
 ```
 php artisan key:generate
 ```
 
-**All done!** From now on you can run the project from its root folder with the following command:
+3. Now you can run the project from its root folder whenever you want, using the following command:
 ```
 php artisan serve
 ```
-<p align="center"><img src="https://i.imgur.com/F9U9cQR.png"></p>
 
-If we access that URL _(http://localhost:8000)_ we should be able to see the 'Laravel homepage':
+**All done!**
 
-<p align="center"><img src="https://i.imgur.com/F1Pc6jF.png"></p>
-
-### Docker compose
+### Docker compose 🐋
 Requirements:
 - <a href="https://www.docker.com/">**Docker**</a> installed.
 
-1. Run the following command to get the project up:
+1. Run the following command in the project root folder to build & start the application:
 ```
 docker compose up
 ```
@@ -148,22 +145,22 @@ docker compose up
 **All done!**
 
 
-### Utilización de la API
+## Using the API
 
-Finalmente, yendo a lo más entretenido, ya estamos en condiciones de utilizar el desarrollo.
-La URL del endpoint es la siguiente:
+Onto the _fun_ bit, now we're able to use the API. The URL of the endpoint is the following:
 
 _**<p align="center">http://localhost:8000/api/youtube-search</p>**_
 
-Si ingresamos a dicha URL, veremos algo como esto:
+If we access this URL from a web browser, we'll see something like this:
 
 <p align="center"><img src="https://i.imgur.com/pbnIuWg.png"></p>
 
-Eso es esperable _(puesto que no le hemos indicado el texto a buscar)_, pero nos da confirmación de que la API se está ejecutando exitosamente!<br>
-Ahora, para probar efectivamente el servicio podemos utilizar un cliente como <a href="https://www.postman.com/">**Postman**</a>:
+That's to be expected _(since we haven't specified the text to search for)_, but it gives us confirmation that the API is running successfully!
+
+Now, to effectively test the service we can use a client like <a href="https://www.postman.com/">**Postman**</a>:
 
 <p align="center"><img src="https://i.imgur.com/LcEnhgM.png"></p>
-Como bien se puede apreciar allí, es simplemente cuestión de enviar un JSON con el texto a buscar en el campo 'search':
+As you can see, it's simply a matter of sending a JSON body with the text to search for in the 'search' field:
 
 ```json
 {
@@ -171,29 +168,33 @@ Como bien se puede apreciar allí, es simplemente cuestión de enviar un JSON co
 }
 ```
 
-El último requerimiento obligatorio es una **api_key**, las cuales se dan de alta desde la <a href="https://console.developers.google.com/apis/credentials">**Google Cloud Platform**</a>.<br>
-Esta puede configurarse de dos maneras:<br>
-- Como **Header** del Request _('api_key': 'XXXXXXXXXXXXX')_<br>
-- En la variable 'API_KEY_DEFAULT' archivo **ENV** del proyecto _(En caso de no enviarse como Header, se lee de aquí)_<br>
+The only other mandatory element is the **api_key**, which can be generated on the <a href="https://console.developers.google.com/apis/credentials">**Google Cloud Platform**</a>.
+
+This can be configured in two ways:
+
+- As a Request **header** _('api_key': 'XXXXXXXXXXXXX')_
+
+- As the value of the **_API_KEY_DEFAULT_** variable from the projects' **env** file _(When not sent as a header, it is read from here)_
+
 ```
 API_KEY_DEFAULT=XXXXXXXXXXXXX
 ```
 
-En ambos casos, si se coloca un **api_key** inválido se mostrará el error tal cual lo retorna la API de Google:
+In both cases, if an invalid **api_key** is set _(or if there's no api_key)_, an error will be displayed as returned by the Google API:
 <p align="center"><img src="https://i.imgur.com/1HWHXzm.png"></p>
 
-Finalmente, y como se mencionó al principio, también están a disposición los campos opcionales **results_per_page**, **page_token**.
+Finally, as we mentioned earlier, the optional fields **_results_per_page_** and **_page_token_** are also available.
 
 <p align="center"><img src="https://i.imgur.com/j5ZgZKa.png"></p>
 
-## Observaciones
+### Notes
 
-- Si se ingresa un valor inválido en el parámetro **_results_per_page_**, defaultea a **10**.
-- Si se ingresa un valor inválido en el parámetro **_page_token_** o **_api_key_**, se mostrará el mensaje error tal cual devuelve la API de Google.
+- If an invalid value is entered in the **_results_per_page_** parameter, it defaults to **10**.
+- If an invalid value is entered in the **_page_token_** or **_api_key_** parameters, an error message will be displayed as returned by the Google API.
 
-## Estructura del proyecto
+## Project structure
 
-El grueso del desarrollo se encuentra en los siguientes archivos del proyecto:
+The bulk of the application's logic is on the following files:
 
 `routes->api.php`
 
@@ -203,26 +204,26 @@ El grueso del desarrollo se encuentra en los siguientes archivos del proyecto:
 
 `tests->Feature->YoutubeTest.php`
 
-A efectos de facilitar la comprensión del código, todo está comentado como corresponde:
+In order to facilitate the understanding of the code, everything is commented accordingly:
 
 <p align="center"><img src="https://i.imgur.com/X4R7C6M.png"></p>
 
 ## Tests
 
-Como se mencionó al inicio, hay tests para validar el funcionamiento del servicio. Estos son:
+There are some tests that can be run to make sure the application functions properly. These are:
 
-1. Validar que una consulta ejemplo devuelva status HTTP 200 - OK.
-2. Validar que el formato del JSON resultante se corresponda con el estipulado.
+1. Validate that an example query returns HTTP status 200 - OK.
+2. Validate that the JSON response format matches to the stipulated one.
 
-Para ejecutarlos, simplemente se corre el siguiente comando desde la carpeta del proyecto:
+To execute them, simply run the following command from the project folder:
 ```
 php artisan test tests\Feature\YoutubeTest.php
 ```
 <p align="center"><img src="https://i.imgur.com/cBc7Iox.png"></p>
 
-## Cierre
-Me alegra poder decir que el _‘Have fun!!’_ de la consigna del Challenge también fue cumplida, ¡Realmente entretenido el proyecto!
+## Closing thoughts
+I am happy to say that the _‘Have fun!’_ bit from the Challenge's description was also achieved, I really enjoyed the project!
 
-Para quien haya leído hasta aquí, ¡Muchas gracias y saludos!
+To whoever read this far, thank you very much and best regards!
 
 _<p align="right">Matías Carabella - Back-end Developer</p>_
