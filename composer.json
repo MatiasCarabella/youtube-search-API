@@ -10,16 +10,16 @@
     "require": {
         "php": "^8.2",
         "guzzlehttp/guzzle": "^7.5",
-        "laravel/framework": "^9.47",
+        "laravel/framework": "^10.0",
         "laravel/tinker": "^2.8"
     },
     "require-dev": {
-        "spatie/laravel-ignition": "^1.6",
+        "spatie/laravel-ignition": "^2.0",
         "fakerphp/faker": "^1.21",
         "laravel/sail": "^1.18",
         "mockery/mockery": "^1.5",
-        "nunomaduro/collision": "^6.4",
-        "phpunit/phpunit": "^9.5"
+        "nunomaduro/collision": "^7.0",
+        "phpunit/phpunit": "^10.0"
     },
     "config": {
         "optimize-autoloader": true,
@@ -43,7 +43,7 @@
             "Tests\\": "tests/"
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true,
     "scripts": {
         "post-autoload-dump": [
