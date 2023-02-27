@@ -81,7 +81,7 @@ Finally, the general format of the response will be as follows:
     - _(Update 26/02/2023):_ Upgraded to the most recent version: **PHP 8.2.3**
 - _**Framework** of your choice (Optional):_
     - _(13/03/2021):_ Developed with **Laravel 8**
-    - _(Update 12/07/2022):_ Upgraded to **Laravel 9**
+    - _(Update 26/02/2023):_ Upgraded to **Laravel 10**
 - _The project must be available on **GitHub** or **BitBucket**:_
     - **GitHub** was chosen, in the present repository: <a href="https://github.com/MatiasCarabella/youtubeSearchAPI">_MatiasCarabella/youtubeSearchAPI (github.com)_</a>
 - _The project must be **testable** locally, with the necessary **documentation** on how to do it:_
