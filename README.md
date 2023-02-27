@@ -215,9 +215,9 @@ There are some tests that can be run to make sure the application functions prop
 1. Validate that an example query returns HTTP status 200 - OK.
 2. Validate that the JSON response format matches to the stipulated one.
 
-To execute them, simply run the following command from the project folder:
+To execute them, simply run the following command from the project root folder:
 ```
-php artisan test tests\Feature\YoutubeTest.php
+php artisan test tests/Feature/YoutubeTest.php
 ```
 <p align="center"><img src="https://i.imgur.com/cBc7Iox.png"></p>
 
