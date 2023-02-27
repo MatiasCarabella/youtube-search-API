@@ -16,7 +16,7 @@ class YoutubeTest extends TestCase
             'search' => self::EXAMPLE_KEYWORD
         ];
 
-        $searchSuccess = json_decode(file_get_contents('tests\Responses\YouTube\SearchSuccess.json'), true);
+        $searchSuccess = json_decode(file_get_contents('./tests/Responses/YouTube/SearchSuccess.json'), true);
         Http::fake($searchSuccess);
 
         $this->json('GET', '/api/youtube-search/', $body)
@@ -32,7 +32,7 @@ class YoutubeTest extends TestCase
             "page_token" => "CAUQAA",
         ];
 
-        $searchSuccess = json_decode(file_get_contents('tests\Responses\YouTube\SearchSuccess.json'), true);
+        $searchSuccess = json_decode(file_get_contents('./tests/Responses/YouTube/SearchSuccess.json'), true);
         Http::fake($searchSuccess);
 
         $this->json('GET', '/api/youtube-search/', $body)
