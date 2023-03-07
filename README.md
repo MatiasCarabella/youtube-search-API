@@ -224,6 +224,8 @@ php artisan test tests/Feature/YoutubeTest.php
 ## Closing thoughts
 I am happy to say that the _‘Have fun!’_ bit from the Challenge's description was also achieved, I really enjoyed the project!
 
+Special thanks to [@DaianaArena](https://github.com/DaianaArena) for creating the banner image.
+
 To whoever read this far, thank you very much and best regards!
 
 _<p align="right">Matías Carabella - Back-end Developer</p>_
