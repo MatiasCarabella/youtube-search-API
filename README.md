@@ -1,31 +1,17 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://i.imgur.com/ckGOMl1.png" width="400"></a></p>
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Youtube Search API - Aivo Challenge - Technical Document
-
-## Index
-  * [General requirement](#general-requirement)
-    + [Mandatory parameters](#mandatory-parameters)
-    + [Optional parameters](#optional-parameters)
-  * [Project guidelines](#project-guidelines)
-  * [Installation](#installation)
-    + [PHP | Composer | Artisan](#php--composer--artisan)
-    + [Docker compose](#docker-compose-)
-  * [Using the API](#using-the-api)
-    + [Notes](#notes)
-  * [Project structure](#project-structure)
-  * [Tests](#tests)
-  * [Closing thoughts](#closing-thoughts)
+# Youtube Search API - Aivo Challenge - Technical Document
 
 
-## General requirement
-- Develop an endpoint that returns up to 10 results from a YouTube search, given a keyword
+### General requirement
+ Develop an endpoint that returns up to 10 results from a YouTube search, given a keyword
 
 ### Mandatory parameters
 - **_published_at_** **(*)**
