@@ -1,17 +1,31 @@
-FROM php:8.2.3-cli
+FROM php:8.3-cli
 
-## Installing necessary php extensions ##
-RUN apt update \
-    && apt install -y libzip-dev zip unzip \
-    && docker-php-ext-install zip \
-    && docker-php-ext-install pdo pdo_mysql sockets
+# Install system dependencies and PHP extensions
+RUN apt-get update && apt-get install -y \
+    libzip-dev \
+    zip \
+    unzip \
+    && rm -rf /var/lib/apt/lists/* \
+    && docker-php-ext-install -j$(nproc) \
+        zip \
+        pdo \
+        pdo_mysql \
+        sockets
 
-## Installign Composer ##
-RUN curl -sS https://getcomposer.org/installer​ | php -- \
-     --install-dir=/usr/local/bin --filename=composer
-COPY --from=composer:2.5.4 /usr/bin/composer /usr/bin/composer
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
 WORKDIR /youtube-search-api
+
+# Copy only composer files first
+COPY composer.json composer.lock ./
+
+# Install dependencies
+RUN composer install --no-scripts --no-autoloader
+
+# Copy the rest of the application
 COPY . .
-RUN composer install
+
+# Generate optimized autoload files
+RUN composer dump-autoload --optimize
