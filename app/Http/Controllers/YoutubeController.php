@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\YoutubeService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Http\JsonResponse;
 
 class YoutubeController extends Controller
@@ -18,32 +19,47 @@ class YoutubeController extends Controller
      *
      * @param Request $request
      * @param YoutubeService $youtubeService
-     * @return array|JsonResponse|Response
+     * @return JsonResponse|Response
      */
     public function searchByKeyword(Request $request, YoutubeService $youtubeService)
     {
+        try {
+            // Validate request parameters
+            $validated = $request->validate([
+                'search' => 'required|string',
+                'results_per_page' => 'nullable|integer|min:' . self::RESULTS_MIN . '|max:' . self::RESULTS_MAX,
+                'page_token' => 'nullable|string',
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json([
+                'message' => 'The given data was invalid.',
+                'errors' => $e->errors()
+            ], 422);
+        }
+
         // Get API key from header or fall back to config
         $apiKey = $request->header('api_key') ?? config('services.youtube.api_key');
 
-        // BODY VALIDATION:
-        $body = json_decode($request->getContent());
-        if ($body === null || !isset($body->search)) {
-            return $youtubeService->errorResponse(Response::HTTP_BAD_REQUEST, "Field 'search' is mandatory.");
-        }
-
         // Validate and set results per page
-        $resultsPerPage = $this->validateResultsPerPage($body->results_per_page ?? null);
+        $resultsPerPage = $this->validateResultsPerPage($validated['results_per_page'] ?? null);
 
         $queryParams = [
             'part' => 'snippet',
             'type' => 'video',
-            'q' => $body->search,
+            'q' => $validated['search'],
             'key' => $apiKey,
             'maxResults' => $resultsPerPage,
-            'pageToken' => $body->page_token ?? null,
+            'pageToken' => $validated['page_token'] ?? null,
         ];
 
-        return $youtubeService->searchByKeyword($queryParams);
+        $response = $youtubeService->searchByKeyword($queryParams);
+        
+        // If the response is already a Response or JsonResponse instance, return it as is
+        if ($response instanceof Response || $response instanceof JsonResponse) {
+            return $response;
+        }
+
+        return response()->json($response);
     }
 
     /**
