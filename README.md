@@ -28,15 +28,15 @@
 In regards to this, I decided to add the parameters  **_direct_link_** and **_channel_title_**, so each **video** will have the following format:
 ```json
 {
-   "published_at":"2011-10-19T02:42:54Z",
-   "id":"1G4isv_Fylg",
-   "title":"Coldplay - Paradise (Official Video)",
-   "description":"Coldplay - Paradise is taken from the album Mylo Xyloto released in 2011 [...]",
-   "thumbnail":"https://i.ytimg.com/vi/1G4isv_Fylg/default.jpg",
-   "extra":{
-      "direct_link":"https://www.youtube.com/watch?v=1G4isv_Fylg",
-      "channel_title":"Coldplay"
-   }
+    "published_at": "2011-10-19T02:42:54Z",
+    "id": "1G4isv_Fylg",
+    "title": "Coldplay - Paradise (Official Video)",
+    "description": "Coldplay - Paradise is taken from the album Mylo Xyloto released in 2011 [...]",
+    "thumbnail": "https://i.ytimg.com/vi/1G4isv_Fylg/default.jpg",
+    "extra": {
+        "direct_link": "https://www.youtube.com/watch?v=1G4isv_Fylg",
+        "channel_title": "Coldplay"
+    }
 }
 ```
 
@@ -50,12 +50,10 @@ Finally, the general format of the response will be as follows:
 
 ```json
 {
-   "next_page_token":"CAEQAA",
-   "total_results":1000000,
-   "results_per_page":1,
-   "videos":[
-
-   ]
+    "next_page_token": "CAEQAA",
+    "total_results": 1000000,
+    "results_per_page": 1,
+    "videos": []
 }
 ```
 
@@ -71,7 +69,7 @@ Finally, the general format of the response will be as follows:
     - _26/02/2023:_ Upgraded to **Laravel 10**
     - _18/06/2025:_ Upgraded to **Laravel 12**
 - _The project must be available on **GitHub** or **BitBucket**:_
-    - **GitHub** was chosen, in the present repository: <a href="https://github.com/MatiasCarabella/youtubeSearchAPI">_MatiasCarabella/youtubeSearchAPI (github.com)_</a>
+    - **GitHub** was chosen, in the present repository: <a href="https://github.com/MatiasCarabella/youtube-search-API">_MatiasCarabella/youtube-search-API (github.com)_</a>
 - _The project must be **testable** locally, with the necessary **documentation** on how to do it:_
     - Correct, I will be addressing the simple process of how to get the application running in the next section.
 - _**Tests** (Optional):_
@@ -140,28 +138,28 @@ Onto the _fun_ bit, now we're able to use the API. The URL of the endpoint is th
 _**<p align="center">http://localhost:8000/api/youtube-search</p>**_
 
 If we access this URL from a web browser, we'll see something like this:
-
-<p align="center"><img src="https://i.imgur.com/pbnIuWg.png"></p>
-
+```json
+{
+  "message": "The given data was invalid.",
+  "errors": {
+    "search": [
+      "The search field is required."
+    ]
+  }
+}
+```
 That's to be expected _(since we haven't specified the text to search for)_, but it gives us confirmation that the API is running successfully!
 
 Now, to effectively test the service we can use a client like <a href="https://www.postman.com/">**Postman**</a>:
 
-<p align="center"><img src="https://i.imgur.com/LcEnhgM.png"></p>
-As you can see, it's simply a matter of sending a JSON body with the text to search for in the 'search' field:
+![image](https://github.com/user-attachments/assets/b3f46aa3-ca42-42db-9aac-d06a41c97394)
 
-```json
-{
-    "search": "Paradise"
-}
-```
+As you can see, it's simply a matter of sending a 'search' query param with the text to search 🔍
 
-The only other mandatory element is the **api_key**, which can be generated on the <a href="https://console.developers.google.com/apis/credentials">**Google Cloud Platform**</a>.
+The only other mandatory element is the auth via **api_key** 🔐, which can be generated on the <a href="https://console.developers.google.com/apis/credentials">**Google Cloud Platform**</a>.
 
 This can be configured in two ways:
-
 - As a Request **header** _('api_key': 'XXXXXXXXXXXXX')_
-
 - As the value of the **_API_KEY_DEFAULT_** variable from the projects' **env** file _(When not sent as a header, it is read from here)_
 
 ```
@@ -169,11 +167,12 @@ API_KEY_DEFAULT=XXXXXXXXXXXXX
 ```
 
 In both cases, if an invalid **api_key** is set _(or if there's no api_key)_, an error will be displayed as returned by the Google API:
-<p align="center"><img src="https://i.imgur.com/1HWHXzm.png"></p>
+
+![image](https://github.com/user-attachments/assets/57b16a9c-dfec-434b-a7fb-5a6119007a7c)
 
 Finally, as we mentioned earlier, the optional fields **_results_per_page_** and **_page_token_** are also available.
 
-<p align="center"><img src="https://i.imgur.com/j5ZgZKa.png"></p>
+![image](https://github.com/user-attachments/assets/9e96dad8-709b-420b-b967-19c9b2c7f838)
 
 ### Notes
 
