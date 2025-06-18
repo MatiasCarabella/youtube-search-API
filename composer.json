@@ -8,25 +8,24 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.3",
-        "guzzlehttp/guzzle": "^7.8",
-        "laravel/framework": "^10.37",
-        "laravel/tinker": "^2.9"
+        "php": "^8.4",
+        "guzzlehttp/guzzle": "^7.9",
+        "laravel/framework": "^12.19",
+        "laravel/tinker": "^2.10"
     },
     "require-dev": {
-        "spatie/laravel-ignition": "^2.4",
-        "fakerphp/faker": "^1.23",
-        "laravel/sail": "^1.27",
+        "spatie/laravel-ignition": "^2.9",
+        "fakerphp/faker": "^1.24",
+        "laravel/sail": "^1.43",
         "mockery/mockery": "^1.6",
-        "nunomaduro/collision": "^7.10",
-        "phpunit/phpunit": "^10.5"
+        "phpunit/phpunit": "^11.5"
     },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
-            "php": "8.3"
+            "php": "8.4.8"
         }
     },
     "extra": {
