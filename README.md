@@ -1,17 +1,17 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://i.imgur.com/ckGOMl1.png" width="400"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<div align="center">
+    <a href="https://www.php.net/" target="_blank"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMatiasCarabella%2Fyoutube-search-API%2Fmain%2Fcomposer.json&query=%24.require.php&label=PHP&labelColor=777BB4&color=gray&logo=php&logoColor=white" alt="PHP" /></a>
+    <a href="https://laravel.com/" target="_blank"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMatiasCarabella%2Fyoutube-search-API%2Fmain%2Fcomposer.json&query=%24.require%5B%27laravel%2Fframework%27%5D&label=Laravel&labelColor=FF2D20&color=gray&logo=laravel&logoColor=white" alt="Laravel" /></a>
+    <a href="https://getcomposer.org/" target="_blank"><img src="https://img.shields.io/badge/Composer-885630?logo=composer&logoColor=white" alt="Composer" /></a>
+    <a href="https://www.docker.com/" target="_blank"><img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff" alt="Docker" /></a>
+    <a href="https://documenter.getpostman.com/view/10146128/2s93JoxRFG" target="_blank"><img src="https://img.shields.io/badge/Postman-Collection-orange?logo=postman" alt="Postman Collection" /></a>
+</div>
 
 # Youtube Search API - [Aivo](https://www.aivo.co/) Technical Challenge
 
-
 ### General requirement
- Develop an endpoint that returns up to 10 results from a YouTube search, given a keyword
+ Develop an endpoint that, given a keyword, returns up to 10 results from a YouTube search.
 
 ### Mandatory parameters
 - **_published_at_** **(*)**
@@ -54,7 +54,7 @@ Finally, the general format of the response will be as follows:
    "total_results":1000000,
    "results_per_page":1,
    "videos":[
-      
+
    ]
 }
 ```
@@ -82,24 +82,23 @@ Finally, the general format of the response will be as follows:
 
 ## Installation
 
-1. Generate the folder where you'll download the project, access it from the terminal/console of preference and run the following commands:
+1. Clone the project and `cd` into it:
 
 ```
-git init
-git pull https://github.com/MatiasCarabella/youtubeSearchAPI.git
+git clone https://github.com/MatiasCarabella/youtube-search-API.git
+cd youtube-search-API
 ```
 
-2. Copy the .env file _(Optional: Set a custom **API_KEY_DEFAULT** value)_
+2. Copy the .env file _(optional: Set a custom **API_KEY_DEFAULT** value)_
 
-`copy .env.example .env` _(Windows)_ 
-
-`cp .env.example .env` _(Linux)_
+- Windows: `copy .env.example .env`
+- Linux: `cp .env.example .env`
 
 Now, in order to get the application up and running, you have two options:
-### PHP | Composer | Artisan
-Requirements:
-- <a href="https://www.php.net/">**PHP8**</a> installed.
-- <a href="https://getcomposer.org/">**Composer**</a> installed (dependency manager).
+### PHP 🐘 | Composer 🎻
+Pre-requisites:
+- <a href="https://www.php.net/">**PHP8**</a> installed
+- <a href="https://getcomposer.org/">**Composer**</a> installed
 
 1. Run the following command to download the necessary dependencies:
 
@@ -119,9 +118,10 @@ php artisan serve
 
 **All done!**
 
-### Docker compose 🐋
-Requirements:
-- <a href="https://www.docker.com/">**Docker**</a> installed.
+### Docker 🐋
+Pre-requisites:
+- <a href="https://www.docker.com/">**Docker**</a> installed
+- <a href="https://docs.docker.com/compose/">**Docker Compose**</a> installed
 
 1. Run the following command in the project root folder to build & start the application:
 ```
