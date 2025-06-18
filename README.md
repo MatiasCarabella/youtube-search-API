@@ -63,11 +63,13 @@ Finally, the general format of the response will be as follows:
 
 ## Project guidelines
 - _Must be developed in **PHP7**:_
-    - _(13/03/2021):_ Developed using PHP7's newest version as of today: **PHP 7.4.16**
-    - _(Update 26/02/2023):_ Upgraded to the most recent version: **PHP 8.2.3**
+    - _13/03/2021:_ Developed using PHP's newest version as of today: **PHP 7.4.16**
+    - _ 26/02/2023:_ Upgraded to  **PHP 8.2.3**
+    - _ 18/06/2025:_ Upgraded to  **PHP 8.4.8**
 - _**Framework** of your choice (Optional):_
-    - _(13/03/2021):_ Developed with **Laravel 8**
-    - _(Update 26/02/2023):_ Upgraded to **Laravel 10**
+    - _13/03/2021:_ Developed with **Laravel 8**
+    - _26/02/2023:_ Upgraded to **Laravel 10**
+    - _18/06/2025:_ Upgraded to **Laravel 12**
 - _The project must be available on **GitHub** or **BitBucket**:_
     - **GitHub** was chosen, in the present repository: <a href="https://github.com/MatiasCarabella/youtubeSearchAPI">_MatiasCarabella/youtubeSearchAPI (github.com)_</a>
 - _The project must be **testable** locally, with the necessary **documentation** on how to do it:_
