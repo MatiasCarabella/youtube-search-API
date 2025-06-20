@@ -46,6 +46,9 @@ The list of fetched videos will be contained in a **_videos_** parameter, which 
 - **_next_page_token_** **(*)** _(makes it possible to navigate between the result pages)_
 - **_prev_page_token_** **(*)** _(same as ‘next_page_token’)_
 
+
+**(*)** - The **_next_page_token_** parameter will only appear if there are more pages of results, likewise, **_prev_page_token_** will only appear if we are not positioned on page 1.
+
 Finally, the general format of the response will be as follows:
 
 ```json
@@ -57,13 +60,11 @@ Finally, the general format of the response will be as follows:
 }
 ```
 
-**(*)** - The **_next_page_token_** parameter will only appear if there are more pages of results, likewise, **_prev_page_token_** will only appear if we are not positioned on page 1.
-
 ## Project guidelines
 - _Must be developed in **PHP7**:_
     - _13/03/2021:_ Developed using PHP's newest version as of today: **PHP 7.4.16**
-    - _ 26/02/2023:_ Upgraded to  **PHP 8.2.3**
-    - _ 18/06/2025:_ Upgraded to  **PHP 8.4.8**
+    - _26/02/2023:_ Upgraded to  **PHP 8.2.3**
+    - _18/06/2025:_ Upgraded to  **PHP 8.4.8**
 - _**Framework** of your choice (Optional):_
     - _13/03/2021:_ Developed with **Laravel 8**
     - _26/02/2023:_ Upgraded to **Laravel 10**
@@ -197,19 +198,16 @@ In order to facilitate the understanding of the code, everything is commented ac
 
 ## Tests
 
-There are automated tests to ensure the application functions properly. These include:
+There are some tests that can be run to make sure the application functions properly. These are:
 
-1. Validating that an example query to the `/api/youtube-search` endpoint returns HTTP status 200 (OK).
-2. Validating that the JSON response format matches the expected structure, including fields like `total_results`, `results_per_page`, `next_page_token`, and an array of `videos` with all required properties.
-3. Validating that missing required parameters (like `search`) return a 422 error with a proper error message.
-4. Validating that the application handles YouTube API errors gracefully and returns a 500 error with an error message.
+1. Validate that an example query returns HTTP status 200 - OK.
+2. Validate that the JSON response format matches to the stipulated one.
 
-To execute the tests, run:
+To execute them, simply run the following command from the project root folder:
 ```
-php artisan test tests/Feature/YoutubeTest.php
+php artisan test
 ```
-
-<p align="center"><img src="https://i.imgur.com/cBc7Iox.png"></p>
+<p align="center"><img src="https://github.com/user-attachments/assets/63ed6996-5143-4d29-8924-323f2b8b1be0"></p>
 
 ## Closing thoughts
 I am happy to say that the _‘Have fun!’_ bit from the Challenge's description was also achieved, I really enjoyed the project!
