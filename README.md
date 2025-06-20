@@ -196,6 +196,22 @@ In order to facilitate the understanding of the code, everything is commented ac
 
 <p align="center"><img src="https://i.imgur.com/X4R7C6M.png"></p>
 
+## Formatting
+
+This project uses [PHP CS Fixer](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer) to ensure consistent code style.
+
+To automatically format your code, run:
+```
+composer format
+```
+If you are using PHP 8.4 or higher, you may need to bypass the version check:
+```
+$env:PHP_CS_FIXER_IGNORE_ENV=1; composer format
+```
+(For PowerShell. For Bash: `PHP_CS_FIXER_IGNORE_ENV=1 composer format`)
+
+The formatting rules are defined in the `.php-cs-fixer.php` file at the project root.
+
 ## Tests
 
 There are some tests that can be run to make sure the application functions properly. These are:
