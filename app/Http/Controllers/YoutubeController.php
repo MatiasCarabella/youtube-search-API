@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Services\YoutubeService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Http\JsonResponse;
 
 class YoutubeController extends Controller
 {
@@ -33,7 +33,7 @@ class YoutubeController extends Controller
         } catch (ValidationException $e) {
             return response()->json([
                 'message' => 'The given data was invalid.',
-                'errors' => $e->errors()
+                'errors' => $e->errors(),
             ], 422);
         }
 

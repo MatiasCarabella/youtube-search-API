@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\Http;
-use Illuminate\Http\Response;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Http;
 use Throwable;
 
 class YoutubeService extends BaseService
@@ -19,11 +19,11 @@ class YoutubeService extends BaseService
         try {
             $response = Http::withoutVerifying()->get("https://www.googleapis.com/youtube/v3/search", $queryParams);
 
-             /**
-             * Check whether the Request was successful
-             * - If yes return it with the corresponding format
-             * - If not return the API error message as is
-             */
+            /**
+            * Check whether the Request was successful
+            * - If yes return it with the corresponding format
+            * - If not return the API error message as is
+            */
             return $response->status() === Response::HTTP_OK ?
                         $this->formatResponse($response) :
                         new Response($response->body(), $response->status(), ['Content-Type' => 'application/json']);
@@ -43,10 +43,9 @@ class YoutubeService extends BaseService
         // Convert the raw Response's body into an array
         $body = json_decode($response->body(), true);
         // Create the variable that will store all the video's info
-        $videos = Array();
+        $videos = [];
         // Go through every element of the List, storing the relevant data in the $videos Array
-        foreach($body["items"] as $item)
-        {
+        foreach ($body["items"] as $item) {
             $video = [
                 "published_at" => $item['snippet']['publishedAt'],
                 "id" => $item['id']['videoId'],
@@ -55,13 +54,13 @@ class YoutubeService extends BaseService
                 "thumbnail" => $item['snippet']['thumbnails']['default']['url'],
                 "extra" => [
                         "direct_link" => "https://www.youtube.com/watch?v=" . $item['id']['videoId'],
-                        "channel_title" => $item['snippet']['channelTitle']
-                ]
+                        "channel_title" => $item['snippet']['channelTitle'],
+                ],
             ];
             $videos[] = $video;
         }
 
-        $formattedResponse = Array();
+        $formattedResponse = [];
 
         // If the current page is not the first one, the 'prevPageToken' element is displayed
         $formattedResponse += array_key_exists('prevPageToken', $body) ? ["prev_page_token" => $body['prevPageToken']] : [];
@@ -72,7 +71,7 @@ class YoutubeService extends BaseService
         return $formattedResponse + [
                 "total_results" => $body['pageInfo']['totalResults'],
                 "results_per_page" => $body['pageInfo']['resultsPerPage'],
-                "videos" => $videos
+                "videos" => $videos,
             ];
     }
 }

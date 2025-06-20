@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Tests\TestCase;
 
 class YoutubeTest extends TestCase
 {
@@ -28,7 +28,7 @@ class YoutubeTest extends TestCase
         return $this->mockResponse;
     }
 
-    public function testHttpStatus200()
+    public function testHttpStatusOk()
     {
         $this->json('GET', '/ping')
             ->assertStatus(200);
@@ -45,17 +45,21 @@ class YoutubeTest extends TestCase
 
         // Mock the YouTube API response
         Http::fake([
-            self::YOUTUBE_API_URL => Http::response($this->getMockResponse(), 200)
+            self::YOUTUBE_API_URL => Http::response($this->getMockResponse(), 200),
         ]);
 
         // Act & Assert
         $this->json('GET', '/api/youtube-search', $body)
-            ->assertJson(fn (AssertableJson $json) =>
+            ->assertJson(
+                fn (AssertableJson $json) =>
                 $json->has('total_results')
                     ->has('results_per_page')
                     ->has('next_page_token')
-                    ->has('videos', fn ($json) =>
-                        $json->each(fn ($video) =>
+                    ->has(
+                        'videos',
+                        fn ($json) =>
+                        $json->each(
+                            fn ($video) =>
                             $video->has('published_at')
                                 ->has('id')
                                 ->has('title')
@@ -74,7 +78,8 @@ class YoutubeTest extends TestCase
         $body = [];
         $this->json('GET', '/api/youtube-search', $body)
             ->assertStatus(422)
-            ->assertJson(fn (AssertableJson $json) =>
+            ->assertJson(
+                fn (AssertableJson $json) =>
                 $json->has('message')
                      ->has('errors')
             );
@@ -84,11 +89,12 @@ class YoutubeTest extends TestCase
     {
         $body = ['search' => self::EXAMPLE_KEYWORD];
         Http::fake([
-            self::YOUTUBE_API_URL => Http::response(['error' => 'API error'], 500)
+            self::YOUTUBE_API_URL => Http::response(['error' => 'API error'], 500),
         ]);
         $this->json('GET', '/api/youtube-search', $body)
             ->assertStatus(500)
-            ->assertJson(fn (AssertableJson $json) =>
+            ->assertJson(
+                fn (AssertableJson $json) =>
                 $json->has('error')
             );
     }

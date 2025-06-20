@@ -196,15 +196,18 @@ In order to facilitate the understanding of the code, everything is commented ac
 
 ## Tests
 
-There are some tests that can be run to make sure the application functions properly. These are:
+There are automated tests to ensure the application functions properly. These include:
 
-1. Validate that an example query returns HTTP status 200 - OK.
-2. Validate that the JSON response format matches to the stipulated one.
+1. Validating that an example query to the `/api/youtube-search` endpoint returns HTTP status 200 (OK).
+2. Validating that the JSON response format matches the expected structure, including fields like `total_results`, `results_per_page`, `next_page_token`, and an array of `videos` with all required properties.
+3. Validating that missing required parameters (like `search`) return a 422 error with a proper error message.
+4. Validating that the application handles YouTube API errors gracefully and returns a 500 error with an error message.
 
-To execute them, simply run the following command from the project root folder:
+To execute the tests, run:
 ```
 php artisan test tests/Feature/YoutubeTest.php
 ```
+
 <p align="center"><img src="https://i.imgur.com/cBc7Iox.png"></p>
 
 ## Closing thoughts

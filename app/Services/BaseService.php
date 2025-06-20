@@ -11,7 +11,7 @@ class BaseService
      * @param string $message
      * @return JsonResponse
      */
-    public function errorResponse (int $code, string $message): JsonResponse
+    public function errorResponse(int $code, string $message): JsonResponse
     {
         $response = [
             "error" => [
@@ -19,6 +19,7 @@ class BaseService
                 "message" => $message,
             ],
         ];
+
         return new JsonResponse($response, $code);
     }
 }
