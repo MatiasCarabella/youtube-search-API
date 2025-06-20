@@ -5,7 +5,7 @@
     <a href="https://laravel.com/" target="_blank"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMatiasCarabella%2Fyoutube-search-API%2Fmain%2Fcomposer.json&query=%24.require%5B%27laravel%2Fframework%27%5D&label=Laravel&labelColor=FF2D20&color=gray&logo=laravel&logoColor=white" alt="Laravel" /></a>
     <a href="https://getcomposer.org/" target="_blank"><img src="https://img.shields.io/badge/Composer-885630?logo=composer&logoColor=white" alt="Composer" /></a>
     <a href="https://www.docker.com/" target="_blank"><img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff" alt="Docker" /></a>
-    <a href="https://documenter.getpostman.com/view/10146128/2s93JoxRFG" target="_blank"><img src="https://img.shields.io/badge/Postman-Collection-orange?logo=postman" alt="Postman Collection" /></a>
+    <a href="https://documenter.getpostman.com/view/10146128/2sB2xBCUsY" target="_blank"><img src="https://img.shields.io/badge/Postman-Collection-orange?logo=postman" alt="Postman Collection" /></a>
 </div>
 
 # Youtube Search API - [Aivo](https://www.aivo.co/) Technical Challenge
