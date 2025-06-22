@@ -198,12 +198,14 @@ In order to facilitate the understanding of the code, everything is commented ac
 
 ## Formatting
 
-This project uses [PHP CS Fixer](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer) to ensure consistent code style. The formatting rules are defined in the `.php-cs-fixer.php` file at the project root.
+This project uses [PHP CS Fixer](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer) to ensure consistent code style. The formatting rules are defined in the `.php-cs-fixer.php` file at the project root. 
+
 To automatically format your code, run:
 ```
 composer format
 ```
 If you are using an unsupported version of PHP, you may need to bypass the version check:
+
 Powershell: `$env:PHP_CS_FIXER_IGNORE_ENV=1; composer format` | Bash: `PHP_CS_FIXER_IGNORE_ENV=1 composer format`
 
 ## Tests
