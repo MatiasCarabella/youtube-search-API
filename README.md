@@ -61,15 +61,11 @@ Finally, the general format of the response will be as follows:
 ```
 
 ## Project guidelines
+
 - _Must be developed in **PHP7**:_
-    - _13/03/2021:_ Developed using PHP's newest version as of today: **PHP 7.4.16**
-    - _26/02/2023:_ Upgraded to  **PHP 8.2.3**
-    - _18/06/2025:_ Upgraded to  **PHP 8.4.8**
-    - _30/11/2025:_ Upgraded to  **PHP 8.5.0**
+    - Developed using PHP's newest version as of 13/03/2021: **PHP 7.4.16**
 - _**Framework** of your choice (Optional):_
-    - _13/03/2021:_ Developed with **Laravel 8**
-    - _26/02/2023:_ Upgraded to **Laravel 10**
-    - _18/06/2025:_ Upgraded to **Laravel 12**
+    - Developed with **Laravel 8**
 - _The project must be available on **GitHub** or **BitBucket**:_
     - **GitHub** was chosen, in the present repository: <a href="https://github.com/MatiasCarabella/youtube-search-API">_MatiasCarabella/youtube-search-API (github.com)_</a>
 - _The project must be **testable** locally, with the necessary **documentation** on how to do it:_
@@ -81,6 +77,19 @@ Finally, the general format of the response will be as follows:
         -  **api_key** _(holds the mandatory authentication key to use the Google/Youtube API, if this parameter is absent it uses the **API_KEY_DEFAULT** from the .env file)_
         - **results_per_page** _(modifies the number of results per page, up to 10 as indicated in the project requirement, if this parameter is absent the default is also 10)_
         - **page_token** _(allows to navigate between the different pages of results, making use of the parameters **_next_page_token_** and **_prev_page_token_**, if this parameter is absent it simply defaults to page #1)_
+
+## Changelog
+
+### 30/11/2025
+- Upgraded to **PHP 8.5.0**
+
+### 18/06/2025
+- Upgraded to **PHP 8.4.8**
+- Upgraded to **Laravel 12**
+
+### 26/02/2023
+- Upgraded to **PHP 8.2.3**
+- Upgraded to **Laravel 10**
 
 ## Installation
 
