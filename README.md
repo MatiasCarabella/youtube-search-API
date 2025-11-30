@@ -65,6 +65,7 @@ Finally, the general format of the response will be as follows:
     - _13/03/2021:_ Developed using PHP's newest version as of today: **PHP 7.4.16**
     - _26/02/2023:_ Upgraded to  **PHP 8.2.3**
     - _18/06/2025:_ Upgraded to  **PHP 8.4.8**
+    - _30/11/2025:_ Upgraded to  **PHP 8.5.0**
 - _**Framework** of your choice (Optional):_
     - _13/03/2021:_ Developed with **Laravel 8**
     - _26/02/2023:_ Upgraded to **Laravel 10**
